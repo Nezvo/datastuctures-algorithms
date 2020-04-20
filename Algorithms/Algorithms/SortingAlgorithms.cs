@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DsAlgo.Algorithms
+namespace Algorithms
 {
 	public static class SortingAlgorithms
 	{

@@ -1,5 +1,6 @@
-﻿using System;
-using DsAlgo.Algorithms;
+﻿using Algorithms;
+using DataStructures;
+using System;
 
 namespace DsAlgo
 {
