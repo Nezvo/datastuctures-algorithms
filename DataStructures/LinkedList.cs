@@ -227,7 +227,7 @@ namespace DataStructures
 
 			public Node(T value)
 			{
-				this.Value = value;
+				Value = value;
 			}
 		} 
 		#endregion

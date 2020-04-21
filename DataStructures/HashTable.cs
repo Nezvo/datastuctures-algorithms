@@ -5,11 +5,11 @@ namespace DataStructures
 	public class HashTable<TKey, TValue> where TKey : IComparable
 	{
 		#region Internals and properties
-		private readonly System.Collections.Generic.LinkedList<KeyValuePair>[] Entries;
+		private readonly System.Collections.Generic.LinkedList<KeyValuePair>[] entries;
 
 		public HashTable(int length)
 		{
-			Entries = new System.Collections.Generic.LinkedList<KeyValuePair>[length];
+			entries = new System.Collections.Generic.LinkedList<KeyValuePair>[length];
 		} 
 		#endregion
 
@@ -45,15 +45,15 @@ namespace DataStructures
 		#region Private methods
 		private System.Collections.Generic.LinkedList<KeyValuePair> GetBucket(TKey key)
 		{
-			return Entries[Hash(key)];
+			return entries[Hash(key)];
 		}
 
 		private System.Collections.Generic.LinkedList<KeyValuePair> GetOrCreateBucket(TKey key)
 		{
 			var index = Hash(key);
-			var bucket = Entries[index];
+			var bucket = entries[index];
 			if (bucket == null)
-				bucket = Entries[index] = new System.Collections.Generic.LinkedList<KeyValuePair>();
+				bucket = entries[index] = new System.Collections.Generic.LinkedList<KeyValuePair>();
 
 			return bucket;
 		}
@@ -74,7 +74,7 @@ namespace DataStructures
 
 		private long Hash(TKey key)
 		{
-			return Convert.ToInt64(key) % Entries.Length;
+			return Convert.ToInt64(key) % entries.Length;
 		}
 		#endregion
 
@@ -86,8 +86,8 @@ namespace DataStructures
 
 			public KeyValuePair(TKey key, TValue value)
 			{
-				this.Key = key;
-				this.Value = value;
+				Key = key;
+				Value = value;
 			}
 		} 
 		#endregion
