@@ -10,9 +10,9 @@ namespace DataStructures
 		private int front;
 		private int count;
 
-		public QueueWithArray(int capacity)
+		public QueueWithArray(int length)
 		{
-			items = new T[capacity];
+			items = new T[length];
 		}
 		#endregion
 

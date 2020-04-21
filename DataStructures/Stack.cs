@@ -10,7 +10,7 @@ namespace DataStructures
 
 		public Stack(int length)
 		{
-			items = new T[5];
+			items = new T[length];
 		} 
 		#endregion
 
