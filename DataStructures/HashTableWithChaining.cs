@@ -2,12 +2,12 @@
 
 namespace DataStructures
 {
-	public class HashTable<TKey, TValue> where TKey : IComparable
+	public class HashTableWithChaining<TKey, TValue> where TKey : IComparable
 	{
 		#region Internals and properties
 		private readonly System.Collections.Generic.LinkedList<KeyValuePair>[] entries;
 
-		public HashTable(int length)
+		public HashTableWithChaining(int length)
 		{
 			entries = new System.Collections.Generic.LinkedList<KeyValuePair>[length];
 		} 
@@ -39,6 +39,11 @@ namespace DataStructures
 			if (entry == null)
 				return;
 			GetBucket(key).Remove(entry);
+		}
+
+		public bool Contains(TKey key)
+		{
+			return GetEntry(key) != null;
 		}
 		#endregion
 
@@ -74,7 +79,7 @@ namespace DataStructures
 
 		private long Hash(TKey key)
 		{
-			return Convert.ToInt64(key) % entries.Length;
+			return key.GetHashCode() % entries.Length;
 		}
 		#endregion
 
