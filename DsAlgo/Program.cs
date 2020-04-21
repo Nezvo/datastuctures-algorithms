@@ -1,5 +1,7 @@
 ﻿using Algorithms;
 using DataStructures;
+using Demo;
+using Demo.Helpers;
 using System;
 
 namespace DsAlgo
@@ -37,7 +39,13 @@ namespace DsAlgo
 			numbers.BucketSort();
 			Console.WriteLine("BucketSort: \t" + string.Join(", ", numbers));
 
-			Console.ReadKey();
+			Console.WriteLine($"First non repeating char in cactus: {CharFinder.FindFirstNonRepeatingChar("cactus")}");
+
+			Console.WriteLine($"First repeating char in banana: {CharFinder.FindFirstRepeatedChar("banana")}");
+
+			Console.WriteLine($"Reverser string of potato is {StringReverser.Reverse("potato")}");
+
+			Console.WriteLine($"Expression '((x + y) = (y + x)' is {(Expression.IsBalanced("((x + y) = (y + x)") ? "balanced" : "not balanced")}");
 		}
 	}
 }
