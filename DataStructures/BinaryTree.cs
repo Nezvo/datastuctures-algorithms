@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace DataStructures
 {
-	public class BinaryTree
+	public class BinaryTree<T> where T : IComparable
 	{
 		#region Internals and properties
 		private Node root; 
 		#endregion
 
 		#region Public methods
-		public void Add(int value)
+		public void Add(T value)
 		{
 			var node = new Node(value);
 
@@ -23,7 +23,7 @@ namespace DataStructures
 			var current = root;
 			while (true)
 			{
-				if (value < current.Value)
+				if (value.CompareTo(current.Value) < 0)
 				{
 					if (current.LeftChild == null)
 					{
@@ -44,28 +44,28 @@ namespace DataStructures
 			}
 		}
 
-		public int? Min()
+		public T Min()
 		{
 			if (root == null)
-				return null;
+				throw new InvalidOperationException();
 
 			return Min(root);
 		}
 
-		public int? Max()
+		public T Max()
 		{
 			if (root == null)
-				return null;
+				throw new InvalidOperationException();
 
 			return Max(root);
 		}
 
-		public bool Contains(int value)
+		public bool Contains(T value)
 		{
 			return Contains(root, value);
 		}
 
-		public bool Equals(BinaryTree other)
+		public bool Equals(BinaryTree<T> other)
 		{
 			if (other == null)
 				return false;
@@ -94,9 +94,9 @@ namespace DataStructures
 			TraversePostOrder(root);
 		}
 
-		public List<int> GetNodesAtDistance(int distance)
+		public List<T> GetNodesAtDistance(int distance)
 		{
-			var list = new List<int>();
+			var list = new List<T>();
 			GetNodesAtDistance(root, distance, list);
 			return list;
 		}
@@ -110,14 +110,14 @@ namespace DataStructures
 			}
 		}
 
-		public bool AreSibling(int first, int second)
+		public bool AreSibling(T first, T second)
 		{
 			return AreSibling(root, first, second);
 		}
 
-		public List<int> GetAncestors(int value)
+		public List<T> GetAncestors(T value)
 		{
-			var list = new List<int>();
+			var list = new List<T>();
 			GetAncestors(root, value, list);
 			return list;
 		}
@@ -180,7 +180,7 @@ namespace DataStructures
 			return node.LeftChild == null && node.RightChild == null;
 		}
 
-		private int Min(Node node)
+		private T Min(Node node)
 		{
 			if (node.LeftChild == null)
 				return node.Value;
@@ -188,7 +188,7 @@ namespace DataStructures
 			return Min(node.LeftChild);
 		}
 
-		private int Max(Node node)
+		private T Max(Node node)
 		{
 			if (node.RightChild == null)
 				return node.Value;
@@ -202,14 +202,14 @@ namespace DataStructures
 				return true;
 
 			if (first != null && second != null)
-				return first.Value == second.Value
+				return first.Value.CompareTo(second.Value) == 0
 								&& Equals(first.LeftChild, second.LeftChild)
 								&& Equals(first.RightChild, second.RightChild);
 
 			return false;
 		}
 
-		private void GetNodesAtDistance(Node node, int distance, List<int> list)
+		private void GetNodesAtDistance(Node node, int distance, List<T> list)
 		{
 			if (node == null)
 				return;
@@ -246,18 +246,18 @@ namespace DataStructures
 			return CountLeaves(node.LeftChild) + CountLeaves(node.RightChild);
 		}
 
-		private bool Contains(Node node, int value)
+		private bool Contains(Node node, T value)
 		{
 			if (node == null)
 				return false;
 
-			if (node.Value == value)
+			if (node.Value.CompareTo(value) == 0)
 				return true;
 
 			return Contains(node.LeftChild, value) || Contains(node.RightChild, value);
 		}
 
-		private bool AreSibling(Node node, int first, int second)
+		private bool AreSibling(Node node, T first, T second)
 		{
 			if (node == null)
 				return false;
@@ -265,8 +265,8 @@ namespace DataStructures
 			var result = false;
 			if (node.LeftChild != null && node.RightChild != null)
 			{
-				result = (node.LeftChild.Value == first && node.RightChild.Value == second) ||
-										 (node.RightChild.Value == first && node.LeftChild.Value == second);
+				result = (node.LeftChild.Value.CompareTo(first) == 0 && node.RightChild.Value.CompareTo(second) == 0) ||
+										 (node.RightChild.Value.CompareTo(first) == 0 && node.LeftChild.Value.CompareTo(second) == 0);
 			}
 
 			return result ||
@@ -274,7 +274,7 @@ namespace DataStructures
 							AreSibling(node.RightChild, first, second);
 		}
 
-		private bool GetAncestors(Node node, int value, List<int> list)
+		private bool GetAncestors(Node node, T value, List<T> list)
 		{
 			// We should traverse the tree until we find the target value. If
 			// find the target value, we return true without adding the current node
@@ -283,7 +283,7 @@ namespace DataStructures
 			if (node == null)
 				return false;
 
-			if (node.Value == value)
+			if (node.Value.CompareTo(value) == 0)
 				return true;
 
 			// If we find the target value in the left or right sub-trees, that means
@@ -314,11 +314,11 @@ namespace DataStructures
 		#region Helper classes
 		private class Node
 		{
-			public int Value { get; set; }
+			public T Value { get; set; }
 			public Node LeftChild { get; set; }
 			public Node RightChild { get; set; }
 
-			public Node(int value)
+			public Node(T value)
 			{
 				Value = value;
 			}
