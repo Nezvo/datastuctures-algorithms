@@ -2,7 +2,7 @@
 
 namespace DataStructures
 {
-	class AVLTree<T> where T : IComparable
+	public class AVLTree<T> where T : IComparable
 	{
 		#region Internals and properties
 		private AVLNode root;
