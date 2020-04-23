@@ -46,6 +46,11 @@ namespace DsAlgo
 			Console.WriteLine($"Reverser string of potato is {StringReverser.Reverse("potato")}");
 
 			Console.WriteLine($"Expression '((x + y) = (y + x)' is {(Expression.IsBalanced("((x + y) = (y + x)") ? "balanced" : "not balanced")}");
+
+			var arrayInitial = new int[] { 1, 2, 3, 4, 5, 6 };
+			var array = new int[] { 1, 2, 3, 4, 5, 6 };
+			Heap<int>.Heapify(array);
+			Console.WriteLine($"Heapified [{string.Join(", ", arrayInitial)}] is [{string.Join(", ", array)}]");
 		}
 	}
 }

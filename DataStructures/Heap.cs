@@ -54,7 +54,29 @@ namespace DataStructures
 			return items[0];
 		}
 
+		public T GetKthLargest(int k)
+		{
+			if (k < 1 || k > Count)
+				throw new ArgumentOutOfRangeException();
+
+			var heap = new Heap<T>(items.Length);
+			foreach (var number in items)
+				heap.Add(number);
+
+			for (var i = 0; i < k - 1; i++)
+				heap.Remove();
+
+			return heap.Max();
+		}
+
 		public static bool IsMaxHeap(T[] array) => IsMaxHeap(array, 0);
+
+		public static void Heapify(T[] array)
+		{
+			var lastParentIndex = array.Length / 2 - 1;
+			for (var i = lastParentIndex; i >= 0; i--)
+				Heapify(array, i);
+		}
 		#endregion
 
 		#region Private methods
@@ -164,6 +186,34 @@ namespace DataStructures
 			return isValidParent &&
 							IsMaxHeap(array, leftChildIndex) &&
 							IsMaxHeap(array, rightChildIndex);
+		}
+
+		private static void Heapify(T[] array, int index)
+		{
+			var largerIndex = index;
+
+			var leftIndex = index * 2 + 1;
+			if (leftIndex < array.Length &&
+					array[leftIndex].CompareTo(array[largerIndex]) > 0)
+				largerIndex = leftIndex;
+
+			var rightIndex = index * 2 + 2;
+			if (rightIndex < array.Length &&
+				array[rightIndex].CompareTo(array[largerIndex]) > 0)
+				largerIndex = rightIndex;
+
+			if (index == largerIndex)
+				return;
+
+			Swap(array, index, largerIndex);
+			Heapify(array, largerIndex);
+		}
+
+		private static void Swap(T[] array, int first, int second)
+		{
+			var temp = array[first];
+			array[first] = array[second];
+			array[second] = temp;
 		}
 		#endregion
 	}
