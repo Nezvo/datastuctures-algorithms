@@ -8,9 +8,9 @@ namespace DataStructures
 		private T[] items;
 		public int Count { get; private set; }
 
-		public Stack(int length)
+		public Stack(int size)
 		{
-			items = new T[length];
+			items = new T[size];
 		} 
 		#endregion
 

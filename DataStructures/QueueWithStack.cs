@@ -8,10 +8,10 @@ namespace DataStructures
 		private Stack<T> stack1;
 		private Stack<T> stack2;
 
-		public QueueWithStack(int length)
+		public QueueWithStack(int size)
 		{
-			stack1 = new Stack<T>(length);
-			stack2 = new Stack<T>(length);
+			stack1 = new Stack<T>(size);
+			stack2 = new Stack<T>(size);
 		} 
 		#endregion
 

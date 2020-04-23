@@ -7,9 +7,9 @@ namespace DataStructures
 		#region Internals and properties
 		private readonly System.Collections.Generic.LinkedList<KeyValuePair>[] entries;
 
-		public HashTableWithChaining(int length)
+		public HashTableWithChaining(int size)
 		{
-			entries = new System.Collections.Generic.LinkedList<KeyValuePair>[length];
+			entries = new System.Collections.Generic.LinkedList<KeyValuePair>[size];
 		} 
 		#endregion
 

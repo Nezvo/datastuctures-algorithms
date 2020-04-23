@@ -8,10 +8,10 @@ namespace DataStructures
 		private readonly Stack<T> stack;
 		private readonly Stack<T> minStack;
 
-		public MinStack(int length)
+		public MinStack(int size)
 		{
-			stack = new Stack<T>(length);
-			minStack = new Stack<T>(length);
+			stack = new Stack<T>(size);
+			minStack = new Stack<T>(size);
 		}
 		#endregion
 

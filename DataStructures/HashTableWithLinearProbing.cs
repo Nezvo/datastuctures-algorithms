@@ -8,9 +8,9 @@ namespace DataStructures
 		private Entry[] entries;
 		public int Count { get; private set; }
 
-		public HashTableWithLinearProbing(int length)
+		public HashTableWithLinearProbing(int size)
 		{
-			entries = new Entry[length];
+			entries = new Entry[size];
 		}
 		#endregion
 

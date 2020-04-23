@@ -10,9 +10,9 @@ namespace DataStructures
 
     public int Count { get; private set; }
 
-    public Array(int length)
+    public Array(int size)
     {
-      items = new T[length];
+      items = new T[size];
     }
     #endregion
 
