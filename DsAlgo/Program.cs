@@ -3,6 +3,7 @@ using DataStructures;
 using Demo;
 using Demo.Helpers;
 using System;
+using System.Collections.Generic;
 
 namespace DsAlgo
 {
@@ -47,10 +48,18 @@ namespace DsAlgo
 
 			Console.WriteLine($"Expression '((x + y) = (y + x)' is {(Expression.IsBalanced("((x + y) = (y + x)") ? "balanced" : "not balanced")}");
 
-			var arrayInitial = new int[] { 1, 2, 3, 4, 5, 6 };
 			var array = new int[] { 1, 2, 3, 4, 5, 6 };
+			Console.Write($"Heapified [{string.Join(", ", array)}] is ");
 			Heap<int>.Heapify(array);
-			Console.WriteLine($"Heapified [{string.Join(", ", arrayInitial)}] is [{string.Join(", ", array)}]");
+			Console.WriteLine($"[{ string.Join(", ", array)}]");
+
+			var queue = new Queue<string>();
+			queue.Enqueue("1.1");
+			queue.Enqueue("2.2");
+			queue.Enqueue("3.3");
+			Console.Write($"Reversed queue [{string.Join(", ", queue.ToArray())}] is ");
+			QueueReverser<string>.Reverse(queue, queue.Count);
+			Console.WriteLine($"[{string.Join(", ", queue.ToArray())}]");
 		}
 	}
 }
