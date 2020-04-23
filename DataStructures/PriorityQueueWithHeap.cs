@@ -4,8 +4,11 @@ namespace DataStructures
 {
 	public class PriorityQueueWithHeap<T> where T : IComparable
 	{
+		#region Internals and properties
 		private Heap<T> heap;
+		#endregion
 
+		#region Public methods
 		public PriorityQueueWithHeap(int size)
 		{
 			heap = new Heap<T>(size);
@@ -22,5 +25,6 @@ namespace DataStructures
 		}
 
 		public bool isEmpty() => heap.IsEmpty();
+		#endregion
 	}
 }
