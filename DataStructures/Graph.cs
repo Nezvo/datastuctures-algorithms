@@ -196,7 +196,7 @@ namespace DataStructures
 
 			public Node(string label)
 			{
-				this.Label = label;
+				Label = label;
 			}
 		}
 		#endregion

@@ -225,7 +225,7 @@ namespace DataStructures
 
 			public Node(char value)
 			{
-				this.Value = value;
+				Value = value;
 				Children = new Dictionary<char, Node>();
 			}
 
