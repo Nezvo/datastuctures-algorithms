@@ -5,7 +5,7 @@ namespace DataStructures
 	public class QueueWithArray<T>
 	{
 		#region Internals and properties
-		private T[] items;
+		private readonly T[] items;
 		private int rear;
 		private int front;
 		private int count;
@@ -48,15 +48,9 @@ namespace DataStructures
 			return items[front];
 		}
 
-		public bool IsEmpty()
-		{
-			return count == 0;
-		}
+		public bool IsEmpty() => count == 0;
 
-		public bool IsFull()
-		{
-			return count == items.Length;
-		} 
+		public bool IsFull() => count == items.Length;
 		#endregion
 	}
 }

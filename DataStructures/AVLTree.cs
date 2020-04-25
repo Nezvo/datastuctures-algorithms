@@ -81,25 +81,13 @@ namespace DataStructures
 							Height(node.RightChild)) + 1;
 		}
 
-		private bool IsLeftHeavy(AVLNode node)
-		{
-			return BalanceFactor(node) > 1;
-		}
+		private bool IsLeftHeavy(AVLNode node) => BalanceFactor(node) > 1;
 
-		private bool IsRightHeavy(AVLNode node)
-		{
-			return BalanceFactor(node) < -1;
-		}
+		private bool IsRightHeavy(AVLNode node) => BalanceFactor(node) < -1;
 
-		private int BalanceFactor(AVLNode node)
-		{
-			return (node == null) ? 0 : Height(node.LeftChild) - Height(node.RightChild);
-		}
+		private int BalanceFactor(AVLNode node) => (node == null) ? 0 : Height(node.LeftChild) - Height(node.RightChild);
 
-		private int Height(AVLNode node)
-		{
-			return (node == null) ? -1 : node.Height;
-		} 
+		private int Height(AVLNode node) => (node == null) ? -1 : node.Height;
 		#endregion
 
 		#region Helper classes

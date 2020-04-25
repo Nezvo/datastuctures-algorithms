@@ -58,10 +58,7 @@ namespace DataStructures
 			return -1;
 		}
 
-		public bool Contains(T item)
-		{
-			return IndexOf(item) != -1;
-		}
+		public bool Contains(T item) => IndexOf(item) != -1;
 
 		public void RemoveFirst()
 		{
@@ -213,10 +210,7 @@ namespace DataStructures
 			return null;
 		}
 
-		private bool IsEmpty()
-		{
-			return first == null;
-		}
+		private bool IsEmpty() => first == null;
 		#endregion
 
 		#region Helper classes

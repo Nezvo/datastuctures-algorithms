@@ -90,10 +90,7 @@ namespace DataStructures
       return intersection;
     }
 
-    public override string ToString()
-    {
-      return $"[{string.Join(", ", items.Take(Count))}]";
-    }
+    public override string ToString() => $"[{string.Join(", ", items.Take(Count))}]";
 
     #endregion
 

@@ -25,10 +25,7 @@ namespace DataStructures
 			minHeap.Add(item);
 		}
 
-		public TSource Dequeue()
-		{
-			return type == PriorityQueueType.Max ? maxHeap.Remove() : minHeap.Remove();
-		}
+		public TSource Dequeue() => type == PriorityQueueType.Max ? maxHeap.Remove() : minHeap.Remove();
 
 		public bool IsEmpty() => maxHeap.IsEmpty();
 		#endregion

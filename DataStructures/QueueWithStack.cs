@@ -5,8 +5,8 @@ namespace DataStructures
 	public class QueueWithStack<T>
 	{
 		#region Internals and properties
-		private Stack<T> stack1;
-		private Stack<T> stack2;
+		private readonly Stack<T> stack1;
+		private readonly Stack<T> stack2;
 
 		public QueueWithStack(int size)
 		{
@@ -16,10 +16,7 @@ namespace DataStructures
 		#endregion
 
 		#region Public methods
-		public void Enqueue(T item)
-		{
-			stack1.Push(item);
-		}
+		public void Enqueue(T item) => stack1.Push(item);
 
 		public T Dequeue()
 		{
@@ -41,10 +38,7 @@ namespace DataStructures
 			return stack2.Peek();
 		}
 
-		public bool IsEmpty()
-		{
-			return stack1.IsEmpty() && stack2.IsEmpty();
-		}
+		public bool IsEmpty() => stack1.IsEmpty() && stack2.IsEmpty();
 		#endregion
 
 		#region Private methods

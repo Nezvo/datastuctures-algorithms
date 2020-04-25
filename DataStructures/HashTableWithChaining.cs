@@ -41,17 +41,11 @@ namespace DataStructures
 			GetBucket(key).Remove(entry);
 		}
 
-		public bool Contains(TKey key)
-		{
-			return GetEntry(key) != null;
-		}
+		public bool Contains(TKey key) => GetEntry(key) != null;
 		#endregion
 
 		#region Private methods
-		private System.Collections.Generic.LinkedList<KeyValuePair> GetBucket(TKey key)
-		{
-			return entries[Hash(key)];
-		}
+		private System.Collections.Generic.LinkedList<KeyValuePair> GetBucket(TKey key) => entries[Hash(key)];
 
 		private System.Collections.Generic.LinkedList<KeyValuePair> GetOrCreateBucket(TKey key)
 		{
@@ -77,10 +71,7 @@ namespace DataStructures
 			return null;
 		}
 
-		private long Hash(TKey key)
-		{
-			return key.GetHashCode() % entries.Length;
-		}
+		private long Hash(TKey key) => key.GetHashCode() % entries.Length;
 		#endregion
 
 		#region Helper classes

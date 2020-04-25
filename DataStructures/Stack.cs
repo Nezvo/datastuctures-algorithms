@@ -5,7 +5,7 @@ namespace DataStructures
 	public class Stack<T>
 	{
 		#region Internals and properties
-		private T[] items;
+		private readonly T[] items;
 		public int Count { get; private set; }
 
 		public Stack(int size)
@@ -39,10 +39,7 @@ namespace DataStructures
 			return items[Count - 1];
 		}
 
-		public bool IsEmpty()
-		{
-			return Count == 0;
-		}
+		public bool IsEmpty() => Count == 0;
 		#endregion
 	}
 }

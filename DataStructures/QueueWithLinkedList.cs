@@ -60,10 +60,7 @@ namespace DataStructures
 			return head.Value;
 		}
 
-		public bool IsEmpty()
-		{
-			return head == null;
-		}
+		public bool IsEmpty() => head == null;
 		#endregion
 
 		#region Helper classes

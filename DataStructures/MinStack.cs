@@ -39,10 +39,7 @@ namespace DataStructures
 			return top;
 		}
 
-		public T Min()
-		{
-			return minStack.Peek();
-		} 
+		public T Min() => minStack.Peek();
 		#endregion
 	}
 }

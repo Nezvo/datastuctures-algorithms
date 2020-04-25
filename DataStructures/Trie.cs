@@ -39,10 +39,7 @@ namespace DataStructures
 			return current.IsEndOfWord;
 		}
 
-		public void Traverse()
-		{
-			Traverse(root);
-		}
+		public void Traverse() => Traverse(root);
 
 		public void Remove(string word)
 		{
@@ -69,15 +66,9 @@ namespace DataStructures
 			return ContainsRecursive(root, word, 0);
 		}
 
-		public int CountWords()
-		{
-			return CountWords(root);
-		}
+		public int CountWords() => CountWords(root);
 
-		public void PrintWords()
-		{
-			PrintWords(root, "");
-		}
+		public void PrintWords() => PrintWords(root, "");
 
 		public static string LongestCommonPrefix(string[] words)
 		{
@@ -229,35 +220,17 @@ namespace DataStructures
 				Children = new Dictionary<char, Node>();
 			}
 
-			public bool HasChild(char ch)
-			{
-				return Children.ContainsKey(ch);
-			}
+			public bool HasChild(char ch) => Children.ContainsKey(ch);
 
-			public void AddChild(char ch)
-			{
-				Children.Add(ch, new Node(ch));
-			}
+			public void AddChild(char ch) => Children.Add(ch, new Node(ch));
 
-			public Node GetChild(char ch)
-			{
-				return Children[ch];
-			}
+			public Node GetChild(char ch) => Children[ch];
 
-			public Node[] GetChildren()
-			{
-				return Children.Values.ToArray();
-			}
+			public Node[] GetChildren() => Children.Values.ToArray();
 
-			public bool HasChildren()
-			{
-				return Children.Any();
-			}
+			public bool HasChildren() => Children.Any();
 
-			public void RemoveChild(char ch)
-			{
-				Children.Remove(ch);
-			}
+			public void RemoveChild(char ch) => Children.Remove(ch);
 		}
 		#endregion
 	}

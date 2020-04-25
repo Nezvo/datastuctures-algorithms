@@ -5,7 +5,7 @@ namespace DataStructures
 	public class HashTableWithLinearProbing<TKey, TValue> where TKey : IComparable
 	{
 		#region Internals and properties
-		private Entry[] entries;
+		private readonly Entry[] entries;
 		public int Count { get; private set; }
 
 		public HashTableWithLinearProbing(int size)
@@ -46,10 +46,7 @@ namespace DataStructures
 			Count--;
 		}
 
-		public bool Contains(TKey key)
-		{
-			return GetIndex(key) != -1;
-		}
+		public bool Contains(TKey key) => GetIndex(key) != -1;
 
 		private Entry GetEntry(TKey key)
 		{
@@ -82,20 +79,11 @@ namespace DataStructures
 			return -1;
 		}
 
-		private bool IsFull()
-		{
-			return Count == entries.Length;
-		}
+		private bool IsFull() => Count == entries.Length;
 
-		private long Index(TKey key, int i)
-		{
-			return (Hash(key) + i) % entries.Length;
-		}
+		private long Index(TKey key, int i) => (Hash(key) + i) % entries.Length;
 
-		private long Hash(TKey key)
-		{
-			return key.GetHashCode() % entries.Length;
-		}
+		private long Hash(TKey key) => key.GetHashCode() % entries.Length;
 
 		#region Helper classes
 		private class Entry

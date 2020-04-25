@@ -129,25 +129,13 @@ namespace DataStructures
 			return isValid;
 		}
 
-		private TSource RightChild(int index)
-		{
-			return items[RightChildIndex(index)];
-		}
+		private TSource RightChild(int index) => items[RightChildIndex(index)];
 
-		private TSource LeftChild(int index)
-		{
-			return items[LeftChildIndex(index)];
-		}
+		private TSource LeftChild(int index) => items[LeftChildIndex(index)];
 
-		private int LeftChildIndex(int index)
-		{
-			return index * 2 + 1;
-		}
+		private int LeftChildIndex(int index) => index * 2 + 1;
 
-		private int RightChildIndex(int index)
-		{
-			return index * 2 + 2;
-		}
+		private int RightChildIndex(int index) => index * 2 + 2;
 
 		private void BubbleUp()
 		{
@@ -159,10 +147,7 @@ namespace DataStructures
 			}
 		}
 
-		private int ParentIndex(int index)
-		{
-			return (index - 1) / 2;
-		}
+		private int ParentIndex(int index) => (index - 1) / 2;
 
 		private void Swap(int first, int second)
 		{

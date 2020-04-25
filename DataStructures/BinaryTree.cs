@@ -60,10 +60,7 @@ namespace DataStructures
 			return Max(root);
 		}
 
-		public bool Contains(T value)
-		{
-			return Contains(root, value);
-		}
+		public bool Contains(T value) => Contains(root, value);
 
 		public bool Equals(BinaryTree<T> other)
 		{
@@ -79,20 +76,11 @@ namespace DataStructures
 
 		public int CountLeaves() => CountLeaves(root);
 
-		public void TraversePreOrder()
-		{
-			TraversePreOrder(root);
-		}
+		public void TraversePreOrder() => TraversePreOrder(root);
 
-		public void TraverseInOrder()
-		{
-			TraverseInOrder(root);
-		}
+		public void TraverseInOrder() => TraverseInOrder(root);
 
-		public void TraversePostOrder()
-		{
-			TraversePostOrder(root);
-		}
+		public void TraversePostOrder() => TraversePostOrder(root);
 
 		public List<T> GetNodesAtDistance(int distance)
 		{
@@ -110,10 +98,7 @@ namespace DataStructures
 			}
 		}
 
-		public bool AreSibling(T first, T second)
-		{
-			return AreSibling(root, first, second);
-		}
+		public bool AreSibling(T first, T second) => AreSibling(root, first, second);
 
 		public List<T> GetAncestors(T value)
 		{
@@ -124,10 +109,7 @@ namespace DataStructures
 
 		public bool IsBalanced() => IsBalanced(root);
 
-		public bool IsPerfect()
-		{
-			return Size() == (Math.Pow(2, Height() + 1) - 1);
-		}
+		public bool IsPerfect() => Size() == (Math.Pow(2, Height() + 1) - 1);
 		#endregion
 
 		#region Private methods
@@ -175,10 +157,7 @@ namespace DataStructures
 							Height(node.RightChild));
 		}
 
-		private bool IsLeaf(Node node)
-		{
-			return node.LeftChild == null && node.RightChild == null;
-		}
+		private bool IsLeaf(Node node) => node.LeftChild == null && node.RightChild == null;
 
 		private T Min(Node node)
 		{

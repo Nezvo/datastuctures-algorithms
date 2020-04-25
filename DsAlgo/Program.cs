@@ -9,7 +9,7 @@ namespace DsAlgo
 {
 	class Program
 	{
-		static void Main(string[] args)
+		static void Main()
 		{
 			Console.WriteLine("Sorting Algorithms");
 			int[] numbers = {7, 1, 5, 9, 30, 4, 12, 3, 13, 3, 1, 8};

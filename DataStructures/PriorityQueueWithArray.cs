@@ -20,7 +20,7 @@ namespace DataStructures
 		#region Public methods
 		public void Enqueue(T item)
 		{
-			if (isFull())
+			if (IsFull())
 				throw new InvalidOperationException();
 
 			var i = ShiftItemsToInsert(item);
@@ -28,7 +28,7 @@ namespace DataStructures
 			Count++;
 		}
 
-		public bool isFull()
+		public bool IsFull()
 		{
 			return Count == items.Length;
 		}
@@ -82,7 +82,7 @@ namespace DataStructures
 		#region Public methods
 		public void Enqueue(TSource item)
 		{
-			if (isFull())
+			if (IsFull())
 				throw new InvalidOperationException();
 
 			var i = ShiftItemsToInsert(item);
@@ -90,10 +90,7 @@ namespace DataStructures
 			Count++;
 		}
 
-		public bool isFull()
-		{
-			return Count == items.Length;
-		}
+		public bool IsFull() => Count == items.Length;
 
 		public TSource Dequeue()
 		{

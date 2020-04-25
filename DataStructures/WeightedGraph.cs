@@ -9,7 +9,7 @@ namespace DataStructures
 	public class WeightedGraph
 	{
 		#region Internals and propertie
-		private Dictionary<string, Node> nodes = new Dictionary<string, Node>();
+		private readonly Dictionary<string, Node> nodes = new Dictionary<string, Node>();
 		#endregion
 
 		#region Public methods
@@ -195,10 +195,7 @@ namespace DataStructures
 				Edges = new List<Edge>();
 			}
 
-			public void AddEdge(Node to, int weight)
-			{
-				Edges.Add(new Edge(this, to, weight));
-			}
+			public void AddEdge(Node to, int weight) => Edges.Add(new Edge(this, to, weight));
 		}
 
 		private class Edge
