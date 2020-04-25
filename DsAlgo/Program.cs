@@ -50,7 +50,7 @@ namespace DsAlgo
 
 			var array = new int[] { 1, 2, 3, 4, 5, 6 };
 			Console.Write($"Heapified [{string.Join(", ", array)}] is ");
-			Heap<int>.Heapify(array);
+			Heap<int, int>.Heapify(array, (i) => i);
 			Console.WriteLine($"[{ string.Join(", ", array)}]");
 
 			var queue = new Queue<string>();
