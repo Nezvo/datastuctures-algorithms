@@ -154,7 +154,7 @@ namespace DataStructures
 			{
 				b = b.Next;
 				if (b == null)
-					throw new InvalidOperationException();
+					throw new ArgumentException();
 			}
 			while (b != last)
 			{
