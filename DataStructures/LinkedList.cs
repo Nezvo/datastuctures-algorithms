@@ -12,7 +12,7 @@ namespace DataStructures
 		public int Count { get; private set; } 
 		#endregion
 
-		#region Public mehods
+		#region Public methods
 		public void AddLast(T item)
 		{
 			var node = new Node(item);

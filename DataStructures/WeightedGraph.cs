@@ -8,7 +8,7 @@ namespace DataStructures
 {
 	public class WeightedGraph
 	{
-		#region Internals and propertie
+		#region Internals and properties
 		private readonly Dictionary<string, Node> nodes = new Dictionary<string, Node>();
 		#endregion
 

@@ -14,6 +14,7 @@ namespace DataStructures
 		}
 		#endregion
 
+		#region Public methods
 		public void Add(TKey key, TValue value)
 		{
 			var entry = GetEntry(key);
@@ -47,7 +48,9 @@ namespace DataStructures
 		}
 
 		public bool Contains(TKey key) => GetIndex(key) != -1;
+		#endregion
 
+		#region Private methods
 		private Entry GetEntry(TKey key)
 		{
 			var index = GetIndex(key);
@@ -83,7 +86,8 @@ namespace DataStructures
 
 		private long Index(TKey key, int i) => (Hash(key) + i) % entries.Length;
 
-		private long Hash(TKey key) => key.GetHashCode() % entries.Length;
+		private long Hash(TKey key) => key.GetHashCode() % entries.Length; 
+		#endregion
 
 		#region Helper classes
 		private class Entry
