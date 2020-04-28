@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Demo.Helpers
 {
-	public static class Expression
+	public static class ExpressionValidator
 	{
     private static readonly List<char> leftBrackets = new List<char> { '(', '<', '[', '{' };
     private static readonly List<char> rightBrackets = new List<char> { ')', '>', ']', '}' };
