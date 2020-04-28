@@ -11,8 +11,10 @@ namespace Demo
 			var chars = str.ToCharArray();
 			foreach (var ch in chars)
 			{
-				var count = hashTable.ContainsKey(ch) ? hashTable[ch] : 0;
-				hashTable.Add(ch, count + 1);
+				if (hashTable.ContainsKey(ch))
+					hashTable[ch]++; 
+				else
+					hashTable.Add(ch, 1);
 			}
 
 			foreach (var ch in chars)
