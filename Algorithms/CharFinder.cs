@@ -1,5 +1,4 @@
-﻿using DataStructures;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Demo
 {
@@ -7,17 +6,17 @@ namespace Demo
 	{
 		public static char? FindFirstNonRepeatingChar(string str)
 		{
-			var hashTable = new HashTableWithLinearProbing<char, int>(20);
+			var hashTable = new Dictionary<char, int>(20);
 
 			var chars = str.ToCharArray();
 			foreach (var ch in chars)
 			{
-				var count = hashTable.Contains(ch) ? hashTable.Get(ch) : 0;
+				var count = hashTable.ContainsKey(ch) ? hashTable[ch] : 0;
 				hashTable.Add(ch, count + 1);
 			}
 
 			foreach (var ch in chars)
-				if (hashTable.Get(ch) == 1)
+				if (hashTable[ch] == 1)
 					return ch;
 
 			return null;
@@ -25,7 +24,7 @@ namespace Demo
 
 		public static char? FindFirstRepeatedChar(string str)
 		{
-			var set = new HashSet<char>(20);
+			var set = new HashSet<char>();
 
 			foreach (var ch in str.ToCharArray())
 			{
