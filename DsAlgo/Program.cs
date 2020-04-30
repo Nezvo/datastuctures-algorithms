@@ -60,6 +60,13 @@ namespace DsAlgo
 			Console.Write($"Reversed queue [{string.Join(", ", queue.ToArray())}] is ");
 			QueueReverser<string>.Reverse(queue, queue.Count);
 			Console.WriteLine($"[{string.Join(", ", queue.ToArray())}]");
+
+			numbers = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+			Console.WriteLine($"LinearSearch: 1 at index {numbers.LinearSearch(1)}");
+			Console.WriteLine($"BinarySearch: 5 at index {numbers.BinarySearch(5)}");
+			Console.WriteLine($"TernarySearch: 10 at index {numbers.TernarySearch(10)}");
+			Console.WriteLine($"JumpSearch: 3 at index {numbers.JumpSearch(3)}");
+			Console.WriteLine($"ExponentialSearch: 7 at index {numbers.JumpSearch(7)}");
 		}
 	}
 }
