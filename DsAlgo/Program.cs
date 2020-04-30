@@ -1,7 +1,5 @@
 ﻿using Algorithms;
 using DataStructures;
-using Demo;
-using Demo.Helpers;
 using System;
 using System.Collections.Generic;
 
@@ -40,11 +38,11 @@ namespace DsAlgo
 			numbers.BucketSort();
 			Console.WriteLine("BucketSort: \t" + string.Join(", ", numbers));
 
-			Console.WriteLine($"First non repeating char in cactus: {CharFinder.FindFirstNonRepeatingChar("cactus")}");
+			Console.WriteLine($"First non repeating char in cactus: {"cactus".FindFirstNonRepeatingChar()}");
 
-			Console.WriteLine($"First repeating char in banana: {CharFinder.FindFirstRepeatedChar("banana")}");
+			Console.WriteLine($"First repeating char in banana: {"banana".FindFirstRepeatedChar()}");
 
-			Console.WriteLine($"Reverser string of potato is {StringReverser.Reverse("potato")}");
+			Console.WriteLine($"Reversed string of potato is {"potato".ReverseUsingStack()}");
 
 			Console.WriteLine($"Expression '((x + y) = (y + x)' is {(ExpressionValidator.IsBalanced("((x + y) = (y + x)") ? "balanced" : "not balanced")}");
 
@@ -67,6 +65,12 @@ namespace DsAlgo
 			Console.WriteLine($"TernarySearch: 10 at index {numbers.TernarySearch(10)}");
 			Console.WriteLine($"JumpSearch: 3 at index {numbers.JumpSearch(3)}");
 			Console.WriteLine($"ExponentialSearch: 7 at index {numbers.JumpSearch(7)}");
+
+			Console.WriteLine($"Vowels in 'hello': {"hello".CountVowels()}");
+			Console.WriteLine($"Reversed 'hello': {"hello".ReverseUsingArray()}");
+			Console.WriteLine($"Reversed words of 'My name is Jeff': {"My name is Jeff".ReverseWords()}");
+			Console.WriteLine($"'BCDA' is rotation of 'ABCD': {"ABCD".IsRotationOf("BCDA")}");
+			Console.WriteLine($"Removed duplicates in 'aaabbbbbccccccc': {"aaabbbbbccccccc".RemoveDuplicates()}");
 		}
 	}
 }

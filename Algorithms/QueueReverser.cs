@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Demo.Helpers
+namespace Algorithms
 {
 	public static class QueueReverser<T>
 	{
