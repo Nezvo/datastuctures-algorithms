@@ -5,11 +5,11 @@ namespace DataStructures
 	public class HashTableWithChaining<TKey, TValue> where TKey : IComparable
 	{
 		#region Internals and properties
-		private readonly System.Collections.Generic.LinkedList<KeyValuePair>[] entries;
+		private readonly System.Collections.Generic.LinkedList<Entry>[] entries;
 
 		public HashTableWithChaining(int size)
 		{
-			entries = new System.Collections.Generic.LinkedList<KeyValuePair>[size];
+			entries = new System.Collections.Generic.LinkedList<Entry>[size];
 		} 
 		#endregion
 
@@ -23,7 +23,7 @@ namespace DataStructures
 				return;
 			}
 
-			GetOrCreateBucket(key).AddLast(new KeyValuePair(key, value));
+			GetOrCreateBucket(key).AddLast(new Entry(key, value));
 		}
 
 		public TValue Get(TKey key)
@@ -45,19 +45,19 @@ namespace DataStructures
 		#endregion
 
 		#region Private methods
-		private System.Collections.Generic.LinkedList<KeyValuePair> GetBucket(TKey key) => entries[Hash(key)];
+		private System.Collections.Generic.LinkedList<Entry> GetBucket(TKey key) => entries[Hash(key)];
 
-		private System.Collections.Generic.LinkedList<KeyValuePair> GetOrCreateBucket(TKey key)
+		private System.Collections.Generic.LinkedList<Entry> GetOrCreateBucket(TKey key)
 		{
 			var index = Hash(key);
 			var bucket = entries[index];
 			if (bucket == null)
-				bucket = entries[index] = new System.Collections.Generic.LinkedList<KeyValuePair>();
+				bucket = entries[index] = new System.Collections.Generic.LinkedList<Entry>();
 
 			return bucket;
 		}
 
-		private KeyValuePair GetEntry(TKey key)
+		private Entry GetEntry(TKey key)
 		{
 			var bucket = GetBucket(key);
 			if (bucket != null)
@@ -75,12 +75,12 @@ namespace DataStructures
 		#endregion
 
 		#region Helper classes
-		private class KeyValuePair
+		private class Entry
 		{
 			public TKey Key { get; set; }
 			public TValue Value { get; set; }
 
-			public KeyValuePair(TKey key, TValue value)
+			public Entry(TKey key, TValue value)
 			{
 				Key = key;
 				Value = value;
