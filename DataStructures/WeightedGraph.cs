@@ -6,26 +6,26 @@ using System.Linq;
 
 namespace DataStructures
 {
-	public class WeightedGraph
+	public class WeightedGraph<T> where T : IComparable
 	{
 		#region Internals and properties
-		private readonly Dictionary<string, Node> nodes = new Dictionary<string, Node>();
+		private readonly Dictionary<T, Node> nodes = new Dictionary<T, Node>();
 		#endregion
 
 		#region Public methods
-		public void AddNode(string label)
+		public void AddNode(INode<T> node)
 		{
-			if (!nodes.ContainsKey(label))
-				nodes.Add(label, new Node(label));
+			if (!nodes.ContainsKey(node.Id))
+				nodes.Add(node.Id, new Node(node));
 		}
 
-		public void AddEdge(string from, string to, int weight)
+		public void AddEdge(INode<T> from, INode<T> to, double weight)
 		{
-			var fromNode = nodes[from];
+			var fromNode = nodes[from.Id];
 			if (fromNode == null)
 				throw new ArgumentException();
 
-			var toNode = nodes[to];
+			var toNode = nodes[to.Id];
 			if (toNode == null)
 				throw new ArgumentException();
 
@@ -39,21 +39,21 @@ namespace DataStructures
 			{
 				var edges = node.Edges;
 				if (edges.Any())
-					Console.WriteLine($"{node.Label} is connected to {string.Join(", ", edges.Select(x => x.To.Label))}");
+					Console.WriteLine($"{node.Name} is connected to {string.Join(", ", edges.Select(x => x.To.Name))}");
 			}
 		}
 
-		public List<string> GetShortestPath(string from, string to)
+		public List<string> GetShortestPath(INode<T> from, INode<T> to)
 		{
-			var fromNode = nodes[from];
+			var fromNode = nodes[from.Id];
 			if (fromNode == null)
 				throw new ArgumentException();
 
-			var toNode = nodes[to];
+			var toNode = nodes[to.Id];
 			if (toNode == null)
 				throw new ArgumentException();
 
-			var distances = new Dictionary<Node, int>();
+			var distances = new Dictionary<Node, double>();
 			var previousNodes = new Dictionary<Node, Node>();
 			foreach (var node in nodes.Values)
 				distances.Add(node, int.MaxValue);
@@ -102,9 +102,9 @@ namespace DataStructures
 			return false;
 		}
 
-		public WeightedGraph GetMinimumSpanningTree()
+		public WeightedGraph<T> GetMinimumSpanningTree()
 		{
-			var tree = new WeightedGraph();
+			var tree = new WeightedGraph<T>();
 
 			if (!nodes.Any())
 				return tree;
@@ -117,7 +117,7 @@ namespace DataStructures
 			var startNode = enumerator.Current;
 			foreach (var edge in startNode.Edges)
 				edges.Enqueue(edge);
-			tree.AddNode(startNode.Label);
+			tree.AddNode(startNode);
 
 			if (edges.IsEmpty())
 				return tree;
@@ -127,22 +127,21 @@ namespace DataStructures
 				var minEdge = (Edge)edges.Dequeue();
 				var nextNode = minEdge.To;
 
-				if (tree.ContainsNode(nextNode.Label))
+				if (tree.ContainsId(nextNode.Id))
 					continue;
 
-				tree.AddNode(nextNode.Label);
-				tree.AddEdge(minEdge.From.Label,
-								nextNode.Label, minEdge.Weight);
+				tree.AddNode(nextNode);
+				tree.AddEdge(minEdge.From, nextNode, minEdge.Weight);
 
 				foreach (var edge in nextNode.Edges)
-					if (!tree.ContainsNode(edge.To.Label))
+					if (!tree.ContainsId(edge.To.Id))
 						edges.Enqueue(edge);
 			}
 
 			return tree;
 		}
 
-		public bool ContainsNode(string label) => nodes.ContainsKey(label);
+		public bool ContainsId(T id) => nodes.ContainsKey(id);
 		#endregion
 
 		#region Private methods
@@ -159,7 +158,7 @@ namespace DataStructures
 
 			var path = new List<string>();
 			while (stack.Count != 0)
-				path.Add(((Node)stack.Pop()).Label);
+				path.Add(((Node)stack.Pop()).Name);
 
 			return path;
 		}
@@ -183,28 +182,30 @@ namespace DataStructures
 		#endregion
 
 		#region Helper classes
-		private class Node
+		private class Node : INode<T>
 		{
-			public string Label { get; set; }
+			public T Id { get; set; }
+			public string Name { get; set; }
 			public List<Edge> Edges { get; set; }
 
-			public Node(string label)
+			public Node(INode<T> node)
 			{
-				Label = label;
+				Id = node.Id;
+				Name = node.Name;
 				Edges = new List<Edge>();
 			}
 
-			public void AddEdge(Node to, int weight) => Edges.Add(new Edge(this, to, weight));
+			public void AddEdge(Node to, double weight) => Edges.Add(new Edge(this, to, weight));
 		}
 
 		private class Edge : IPriorityQueueItem
 		{
 			public Node From { get; set; }
 			public Node To { get; set; }
-			public int Weight { get; set; }
-			public int Priority { get; set; }
+			public double Weight { get; set; }
+			public double Priority { get; set; }
 
-			public Edge(Node from, Node to, int weight)
+			public Edge(Node from, Node to, double weight)
 			{
 				From = from;
 				To = to;
@@ -216,9 +217,9 @@ namespace DataStructures
 		private class NodeEntry : IPriorityQueueItem
 		{
 			public Node Node { get; set; }
-			public int Priority { get; set; }
+			public double Priority { get; set; }
 
-			public NodeEntry(Node node, int priority)
+			public NodeEntry(Node node, double priority)
 			{
 				Node = node;
 				Priority = priority;
