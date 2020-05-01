@@ -1,37 +1,38 @@
-﻿using System;
+﻿using DataStructures.Interfaces;
+using System;
 
 namespace DataStructures
 {
 	public class AVLTree<T> where T : IComparable
 	{
 		#region Internals and properties
-		private AVLNode root;
+		private IBinaryNode<T> root;
 		#endregion
 
 		#region Public methods
-		public void Add(T value)
+		public void Add(IBinaryNode<T> node)
 		{
-			root = Add(root, value);
+			root = Add(root, node);
 		} 
 		#endregion
 
 		#region Private methods
-		private AVLNode Add(AVLNode root, T value)
+		private IBinaryNode<T> Add(IBinaryNode<T> root, IBinaryNode<T> node)
 		{
 			if (root == null)
-				return new AVLNode(value);
+				return node;
 
-			if (value.CompareTo(root.Value) < 0)
-				root.LeftChild = Add(root.LeftChild, value);
+			if (node.Value.CompareTo(root.Value) < 0)
+				root.LeftChild = Add(root.LeftChild, node);
 			else
-				root.RightChild = Add(root.RightChild, value);
+				root.RightChild = Add(root.RightChild, node);
 
 			SetHeight(root);
 
 			return Balance(root);
 		}
 
-		private AVLNode Balance(AVLNode root)
+		private IBinaryNode<T> Balance(IBinaryNode<T> root)
 		{
 			if (IsLeftHeavy(root))
 			{
@@ -48,7 +49,7 @@ namespace DataStructures
 			return root;
 		}
 
-		private AVLNode RotateLeft(AVLNode root)
+		private IBinaryNode<T> RotateLeft(IBinaryNode<T> root)
 		{
 			var newRoot = root.RightChild;
 
@@ -61,7 +62,7 @@ namespace DataStructures
 			return newRoot;
 		}
 
-		private AVLNode RotateRight(AVLNode root)
+		private IBinaryNode<T> RotateRight(IBinaryNode<T> root)
 		{
 			var newRoot = root.LeftChild;
 
@@ -74,35 +75,20 @@ namespace DataStructures
 			return newRoot;
 		}
 
-		private void SetHeight(AVLNode node)
+		private void SetHeight(IBinaryNode<T> node)
 		{
 			node.Height = Math.Max(
 							Height(node.LeftChild),
 							Height(node.RightChild)) + 1;
 		}
 
-		private bool IsLeftHeavy(AVLNode node) => BalanceFactor(node) > 1;
+		private bool IsLeftHeavy(IBinaryNode<T> node) => BalanceFactor(node) > 1;
 
-		private bool IsRightHeavy(AVLNode node) => BalanceFactor(node) < -1;
+		private bool IsRightHeavy(IBinaryNode<T> node) => BalanceFactor(node) < -1;
 
-		private int BalanceFactor(AVLNode node) => (node == null) ? 0 : Height(node.LeftChild) - Height(node.RightChild);
+		private int BalanceFactor(IBinaryNode<T> node) => (node == null) ? 0 : Height(node.LeftChild) - Height(node.RightChild);
 
-		private int Height(AVLNode node) => (node == null) ? -1 : node.Height;
-		#endregion
-
-		#region Helper classes
-		private class AVLNode
-		{
-			public int Height { get; set; }
-			public T Value { get; set; }
-			public AVLNode LeftChild { get; set; }
-			public AVLNode RightChild { get; set; }
-
-			public AVLNode(T value)
-			{
-				Value = value;
-			}
-		}
+		private int Height(IBinaryNode<T> node) => (node == null) ? -1 : node.Height;
 		#endregion
 	}
 }
