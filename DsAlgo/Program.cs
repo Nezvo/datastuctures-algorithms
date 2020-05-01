@@ -66,11 +66,15 @@ namespace DsAlgo
 			Console.WriteLine($"JumpSearch: 3 at index {numbers.JumpSearch(3)}");
 			Console.WriteLine($"ExponentialSearch: 7 at index {numbers.JumpSearch(7)}");
 
-			Console.WriteLine($"Vowels in 'hello': {"hello".CountVowels()}");
-			Console.WriteLine($"Reversed 'hello': {"hello".ReverseUsingArray()}");
-			Console.WriteLine($"Reversed words of 'My name is Jeff': {"My name is Jeff".ReverseWords()}");
+			Console.WriteLine($"Vowels in 'hello': '{"hello".CountVowels()}'");
+			Console.WriteLine($"Reversed 'hello': '{"hello".ReverseUsingArray()}'");
+			Console.WriteLine($"Reversed words of 'My name is Jeff': '{"My name is Jeff".ReverseWords()}'");
 			Console.WriteLine($"'BCDA' is rotation of 'ABCD': {"ABCD".IsRotationOf("BCDA")}");
-			Console.WriteLine($"Removed duplicates in 'aaabbbbbccccccc': {"aaabbbbbccccccc".RemoveDuplicates()}");
+			Console.WriteLine($"Removed duplicates in 'aaabbbbbccccccc': '{"aaabbbbbccccccc".RemoveDuplicates()}'");
+			Console.WriteLine($"Max occuring character in 'MyNameIsJeff': '{"MyNameIsJeff".GetMaxOccuringChar()}'");
+			Console.WriteLine($"Capitalizes 'my name is jeff': '{"           my       name         is          jeff".CapitalizeEveryWord()}'");
+			Console.WriteLine($"'abcd' is anagram of 'bdac': {"abcd".IsAnagramOf("bdac")}");
+			Console.WriteLine($"'anavolimilovana' is palindrome: {"anavolimilovana".IsPalindrome()}");
 		}
 	}
 }

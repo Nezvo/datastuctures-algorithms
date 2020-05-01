@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Algorithms
 {
@@ -9,7 +10,7 @@ namespace Algorithms
 	{
 		public static string ReverseUsingStack(this string input)
 		{
-			if (input == null)
+			if (string.IsNullOrEmpty(input))
 				return string.Empty;
 
 			var stack = new Stack<char>();
@@ -26,7 +27,7 @@ namespace Algorithms
 
 		public static char? FindFirstNonRepeatingChar(this string input)
 		{
-			if (input == null)
+			if (string.IsNullOrEmpty(input))
 				return null;
 
 			var hashTable = new Dictionary<char, int>(20);
@@ -49,7 +50,7 @@ namespace Algorithms
 
 		public static char? FindFirstRepeatedChar(this string input)
 		{
-			if (input == null)
+			if (string.IsNullOrEmpty(input))
 				return null;
 
 			var set = new HashSet<char>();
@@ -67,7 +68,7 @@ namespace Algorithms
 
 		public static int CountVowels(this string input)
 		{
-			if (input == null)
+			if (string.IsNullOrEmpty(input))
 				return 0;
 
 			var vowelsSet = new HashSet<char> { 'a', 'e', 'i', 'o', 'u' };
@@ -82,7 +83,7 @@ namespace Algorithms
 
 		public static string ReverseUsingIteration(this string input)
 		{
-			if (input == null)
+			if (string.IsNullOrEmpty(input))
 				return string.Empty;
 
 			var reversedString = new StringBuilder();
@@ -95,7 +96,7 @@ namespace Algorithms
 
 		public static string ReverseUsingArray(this string input)
 		{
-			if (input == null)
+			if (string.IsNullOrEmpty(input))
 				return string.Empty;
 
 			var inputArray = input.ToCharArray();
@@ -106,7 +107,7 @@ namespace Algorithms
 
 		public static string ReverseWords(this string input)
 		{
-			if (input == null)
+			if (string.IsNullOrEmpty(input))
 				return string.Empty;
 
 			var words = input.Trim().Split(' ');
@@ -119,7 +120,7 @@ namespace Algorithms
 
 		public static string RemoveDuplicates(this string input)
 		{
-			if (input == null)
+			if (string.IsNullOrEmpty(input))
 				return string.Empty;
 
 			var output = new StringBuilder();
@@ -132,6 +133,111 @@ namespace Algorithms
 				}
 
 			return output.ToString();
+		}
+
+		public static char? GetMaxOccuringChar(this string input)
+		{
+			if (string.IsNullOrEmpty(input))
+				return null;
+
+			const int asciiSize = 255;
+			var frequencies = new int[asciiSize];
+
+			foreach (var ch in input)
+				frequencies[ch]++;
+
+			var maxIndex = 0;
+			for (int i = 0; i < frequencies.Length; i++)
+			{
+				if (frequencies[i] > frequencies[maxIndex])
+					maxIndex = i;
+			}
+
+			return (char)maxIndex;
+		}
+
+		public static string CapitalizeEveryWord(this string input)
+		{
+			if (string.IsNullOrEmpty(input))
+				return string.Empty;
+
+			var words = Regex.Replace(input.Trim(), @"\s+", " ").Split(' ');
+			for (int i = 0; i < words.Length; i++)
+				words[i] = words[i].Substring(0, 1).ToUpper() + words[i].Substring(1).ToLower();
+
+			return string.Join(" ", words);
+		}
+
+		public static bool IsAnagramOf(this string input1, string input2) => AreAnagramUsingHistogramming(input1, input2);
+
+		private static bool AreAnagramUsingSorting(string input1, string input2)
+		{
+			if (string.IsNullOrEmpty(input1) ||
+				string.IsNullOrEmpty(input2) ||
+				input1.Length != input2.Length)
+				return false;
+
+			var array1 = input1.ToLower().ToCharArray();
+			var array2 = input2.ToLower().ToCharArray();
+			Array.Sort(array1);
+			Array.Sort(array2);
+
+			return Enumerable.SequenceEqual(array1, array2);
+		}
+
+		private static bool AreAnagramUsingHistogramming(string input1, string input2)
+		{
+			if (string.IsNullOrEmpty(input1) ||
+				string.IsNullOrEmpty(input2) ||
+				input1.Length != input2.Length)
+				return false;
+
+			input1 = input1.ToLower();
+			input2 = input2.ToLower();
+
+			const int englishAlphabetCount = 26;
+			var frequencies = new int[englishAlphabetCount];
+
+			for (int i = 0; i < input1.Length; i++)
+				frequencies[input1[i] - 'a']++;
+
+			for (int i = 0; i < input2.Length; i++)
+			{
+				int index = input1[i] - 'a';
+
+				if (frequencies[index] == 0)
+					return false;
+
+				frequencies[index]--;
+			}
+			return true;
+		}
+
+		public static bool IsPalindrome(this string input) => IsPalindromeUsingPointers(input);
+
+		private static bool IsPalindromeUsingReverse(string input)
+		{
+			if (string.IsNullOrEmpty(input))
+				return false;
+
+			return Enumerable.SequenceEqual(input, input.Reverse());
+		}
+
+		private static bool IsPalindromeUsingPointers(string input)
+		{
+			if (input == null)
+				return false;
+
+			input = input.ToLower();
+			int left = 0, right = input.Length - 1;
+
+			while (left < right)
+			{
+				if (input[left++] != input[right--])
+					return false;
+			}
+
+			return true;
 		}
 	}
 }
