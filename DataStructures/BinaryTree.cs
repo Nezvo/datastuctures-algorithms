@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataStructures.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace DataStructures
@@ -6,14 +7,12 @@ namespace DataStructures
 	public class BinaryTree<T> where T : IComparable
 	{
 		#region Internals and properties
-		private Node root; 
+		private IBinaryNode<T> root; 
 		#endregion
 
 		#region Public methods
-		public void Add(T value)
+		public void Add(IBinaryNode<T> node)
 		{
-			var node = new Node(value);
-
 			if (root == null)
 			{
 				root = node;
@@ -23,7 +22,7 @@ namespace DataStructures
 			var current = root;
 			while (true)
 			{
-				if (value.CompareTo(current.Value) < 0)
+				if (node.Value.CompareTo(current.Value) < 0)
 				{
 					if (current.LeftChild == null)
 					{
@@ -114,7 +113,7 @@ namespace DataStructures
 
 		#region Private methods
 
-		private void TraversePreOrder(Node node)
+		private void TraversePreOrder(IBinaryNode<T> node)
 		{
 			if (node == null)
 				return;
@@ -124,7 +123,7 @@ namespace DataStructures
 			TraversePreOrder(node.RightChild);
 		}
 
-		private void TraverseInOrder(Node node)
+		private void TraverseInOrder(IBinaryNode<T> node)
 		{
 			if (node == null)
 				return;
@@ -134,7 +133,7 @@ namespace DataStructures
 			TraverseInOrder(node.RightChild);
 		}
 
-		private void TraversePostOrder(Node node)
+		private void TraversePostOrder(IBinaryNode<T> node)
 		{
 			if (node == null)
 				return;
@@ -144,7 +143,7 @@ namespace DataStructures
 			Console.WriteLine(node.Value);
 		}
 
-		private int Height(Node node)
+		private int Height(IBinaryNode<T> node)
 		{
 			if (node == null)
 				return -1;
@@ -157,9 +156,9 @@ namespace DataStructures
 							Height(node.RightChild));
 		}
 
-		private bool IsLeaf(Node node) => node.LeftChild == null && node.RightChild == null;
+		private bool IsLeaf(IBinaryNode<T> node) => node.LeftChild == null && node.RightChild == null;
 
-		private T Min(Node node)
+		private T Min(IBinaryNode<T> node)
 		{
 			if (node.LeftChild == null)
 				return node.Value;
@@ -167,7 +166,7 @@ namespace DataStructures
 			return Min(node.LeftChild);
 		}
 
-		private T Max(Node node)
+		private T Max(IBinaryNode<T> node)
 		{
 			if (node.RightChild == null)
 				return node.Value;
@@ -175,7 +174,7 @@ namespace DataStructures
 			return Max(node.RightChild);
 		}
 
-		private bool Equals(Node first, Node second)
+		private bool Equals(IBinaryNode<T> first, IBinaryNode<T> second)
 		{
 			if (first == null && second == null)
 				return true;
@@ -188,7 +187,7 @@ namespace DataStructures
 			return false;
 		}
 
-		private void GetNodesAtDistance(Node node, int distance, List<T> list)
+		private void GetNodesAtDistance(IBinaryNode<T> node, int distance, List<T> list)
 		{
 			if (node == null)
 				return;
@@ -203,7 +202,7 @@ namespace DataStructures
 			GetNodesAtDistance(node.RightChild, distance - 1, list);
 		}
 
-		private int Size(Node node)
+		private int Size(IBinaryNode<T> node)
 		{
 			if (node == null)
 				return 0;
@@ -214,7 +213,7 @@ namespace DataStructures
 			return 1 + Size(node.LeftChild) + Size(node.RightChild);
 		}
 
-		private int CountLeaves(Node node)
+		private int CountLeaves(IBinaryNode<T> node)
 		{
 			if (node == null)
 				return 0;
@@ -225,7 +224,7 @@ namespace DataStructures
 			return CountLeaves(node.LeftChild) + CountLeaves(node.RightChild);
 		}
 
-		private bool Contains(Node node, T value)
+		private bool Contains(IBinaryNode<T> node, T value)
 		{
 			if (node == null)
 				return false;
@@ -236,7 +235,7 @@ namespace DataStructures
 			return Contains(node.LeftChild, value) || Contains(node.RightChild, value);
 		}
 
-		private bool AreSibling(Node node, T first, T second)
+		private bool AreSibling(IBinaryNode<T> node, T first, T second)
 		{
 			if (node == null)
 				return false;
@@ -253,7 +252,7 @@ namespace DataStructures
 							AreSibling(node.RightChild, first, second);
 		}
 
-		private bool GetAncestors(Node node, T value, List<T> list)
+		private bool GetAncestors(IBinaryNode<T> node, T value, List<T> list)
 		{
 			// We should traverse the tree until we find the target value. If
 			// find the target value, we return true without adding the current node
@@ -277,7 +276,7 @@ namespace DataStructures
 			return false;
 		}
 
-		private bool IsBalanced(Node node)
+		private bool IsBalanced(IBinaryNode<T> node)
 		{
 			if (node == null)
 				return true;
@@ -287,20 +286,6 @@ namespace DataStructures
 			return Math.Abs(balanceFactor) <= 1 &&
 							IsBalanced(node.LeftChild) &&
 							IsBalanced(node.RightChild);
-		}
-		#endregion
-
-		#region Helper classes
-		private class Node
-		{
-			public T Value { get; set; }
-			public Node LeftChild { get; set; }
-			public Node RightChild { get; set; }
-
-			public Node(T value)
-			{
-				Value = value;
-			}
 		}
 		#endregion
 	}
