@@ -8,7 +8,7 @@ namespace Algorithms
 	{
 		#region Bubble sort
 		/// <summary>
-		/// Sorts the collection using bubble sort algorithm
+		/// Sorts the collection using bubble sort algorithm.
 		/// Complexity: O(n^2)
 		/// </summary>
 		/// <typeparam name="T">Type that implements IComparable</typeparam>
@@ -33,7 +33,7 @@ namespace Algorithms
 
 		#region Selection sort
 		/// <summary>
-		/// Sorts the collection using selection sort algorithm
+		/// Sorts the collection using selection sort algorithm.
 		/// Complexity: O(n^2)
 		/// </summary>
 		/// <typeparam name="T">Type that implements IComparable</typeparam>
@@ -54,7 +54,7 @@ namespace Algorithms
 
 		#region InsertionSort
 		/// <summary>
-		/// Sorts the collection using insertion sort algorithm
+		/// Sorts the collection using insertion sort algorithm.
 		/// Complexity: O(n^2)
 		/// </summary>
 		/// <typeparam name="T">Type that implements IComparable</typeparam>
@@ -78,7 +78,7 @@ namespace Algorithms
 
 		#region Merge sort
 		/// <summary>
-		/// Sorts the collection using merge sort algorithm
+		/// Sorts the collection using merge sort algorithm.
 		/// Complexity: O(n log n)
 		/// </summary>
 		/// <typeparam name="T">Type that implements IComparable</typeparam>
@@ -127,7 +127,7 @@ namespace Algorithms
 
 		#region Quick sort
 		/// <summary>
-		/// Sorts the collection using quick sort algorithm
+		/// Sorts the collection using quick sort algorithm.
 		/// Complexity: O(n log n)
 		/// </summary>
 		/// <typeparam name="T">Type that implements IComparable</typeparam>
@@ -165,7 +165,7 @@ namespace Algorithms
 
 		#region Counting sort
 		/// <summary>
-		/// Sorts the collection using counting sort algorithm
+		/// Sorts the collection using counting sort algorithm.
 		/// Complexity: O(n)
 		/// </summary>
 		/// <typeparam name="T">Type that implements IComparable</typeparam>
@@ -187,7 +187,7 @@ namespace Algorithms
 
 		#region Bucket sort
 		/// <summary>
-		/// Sorts the collection using bucket sort algorithm
+		/// Sorts the collection using bucket sort algorithm.
 		/// Complexity: O(n)
 		/// </summary>
 		/// <typeparam name="T">Type that implements IComparable</typeparam>
@@ -223,7 +223,7 @@ namespace Algorithms
 
 		#region Helpers
 		/// <summary>
-		/// Swaps two elements inside a collection
+		/// Swaps two elements inside a collection.
 		/// </summary>
 		/// <typeparam name="T">Type of collection</typeparam>
 		/// <param name="collection">IList collection</param>
@@ -237,7 +237,7 @@ namespace Algorithms
 		}
 
 		/// <summary>
-		/// Returns max item in the collection
+		/// Returns max item in the collection.
 		/// </summary>
 		/// <typeparam name="T">Type that implements IComparable</typeparam>
 		/// <param name="collection">Collection that you want to find max item for</param>

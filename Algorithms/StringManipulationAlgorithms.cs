@@ -9,7 +9,7 @@ namespace Algorithms
 	public static class StringManipulationAlgorithms
 	{
 		/// <summary>
-		/// Reverses string
+		/// Reverses string.
 		/// </summary>
 		/// <param name="input">String that you want to reverse</param>
 		/// <returns>Reversed string</returns>
@@ -57,7 +57,7 @@ namespace Algorithms
 		}
 
 		/// <summary>
-		/// Reverses the order of words in a string
+		/// Reverses the order of words in a string.
 		/// </summary>
 		/// <param name="input">String that you want to perform a operation on</param>
 		/// <returns>String with the reversed order of words</returns>
@@ -73,7 +73,7 @@ namespace Algorithms
 		}
 
 		/// <summary>
-		/// Finds first non repeting character inside a string
+		/// Finds first non repeting character inside a string.
 		/// </summary>
 		/// <param name="input">String that you want to perform search on</param>
 		/// <returns>First non repeting character</returns>
@@ -101,7 +101,7 @@ namespace Algorithms
 		}
 
 		/// <summary>
-		/// Finds first repeated character inside a string
+		/// Finds first repeated character inside a string.
 		/// </summary>
 		/// <param name="input">String that you want to perform search on</param>
 		/// <returns>First repeated character</returns>
@@ -124,7 +124,7 @@ namespace Algorithms
 		}
 
 		/// <summary>
-		/// Counts vowels inside a string
+		/// Counts vowels inside a string.
 		/// </summary>
 		/// <param name="input">String that you want to count vowels for</param>
 		/// <returns>Vowels count</returns>
@@ -144,7 +144,7 @@ namespace Algorithms
 		}
 
 		/// <summary>
-		/// Checks if a string is a rotation of target string
+		/// Checks if a string is a rotation of target string.
 		/// </summary>
 		/// <param name="input1">First string that you want to compare</param>
 		/// <param name="input2">Second string that you want to compare</param>
@@ -169,7 +169,7 @@ namespace Algorithms
 		}
 
 		/// <summary>
-		/// Gets character that occured the most times inside a string
+		/// Gets character that occured the most times inside a string.
 		/// </summary>
 		/// <param name="input">String that you want to perform search on</param>
 		/// <returns>Character that occured the most times</returns>
@@ -195,7 +195,7 @@ namespace Algorithms
 		}
 
 		/// <summary>
-		/// Capitalizes every word inside an string
+		/// Capitalizes every word inside an string.
 		/// </summary>
 		/// <param name="input">String that you want to perform a operation on</param>
 		/// <returns>String with every word capitalized</returns>
@@ -212,7 +212,7 @@ namespace Algorithms
 		}
 
 		/// <summary>
-		/// Checks if a string is an anagram of second string
+		/// Checks if a string is an anagram of second string.
 		/// </summary>
 		/// <param name="input1">First string that you want to compare</param>
 		/// <param name="input2">Second string that you want to compare</param>
@@ -263,7 +263,7 @@ namespace Algorithms
 		}
 
 		/// <summary>
-		/// Cheks if a string is a palindrome
+		/// Cheks if a string is a palindrome.
 		/// </summary>
 		/// <param name="input">String that you want to check</param>
 		/// <returns>true if string is a palindrome, false otherwise</returns>

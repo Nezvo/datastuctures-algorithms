@@ -7,7 +7,8 @@ namespace Algorithms
 	{
 		#region Linear search
 		/// <summary>
-		/// Find <paramref name="item"> in the collection using linear search algorithm
+		/// Find <paramref name="item"> in the collection using linear search algorithm.
+		/// Collection needs to be sorted.
 		/// Complexity: O(n)
 		/// </summary>
 		/// <typeparam name="T">Type that implements IComparable</typeparam>
@@ -26,7 +27,8 @@ namespace Algorithms
 
 		#region Binary search
 		/// <summary>
-		/// Find <paramref name="item"> in the collection using binary search algorithm
+		/// Find <paramref name="item"> in the collection using binary search algorithm.
+		/// Collection needs to be sorted.
 		/// Complexity: O(log n)
 		/// </summary>
 		/// <typeparam name="T">Type that implements IComparable</typeparam>
@@ -53,7 +55,8 @@ namespace Algorithms
 
 		#region Ternary search
 		/// <summary>
-		/// Find <paramref name="item"> in the collection using ternary search algorithm
+		/// Find <paramref name="item"> in the collection using ternary search algorithm.
+		/// Collection needs to be sorted.
 		/// Complexity: O(log3 n)
 		/// </summary>
 		/// <typeparam name="T">Type that implements IComparable</typeparam>
@@ -87,7 +90,8 @@ namespace Algorithms
 
 		#region Jump search
 		/// <summary>
-		/// Find <paramref name="item"> in the collection using jump search algorithm
+		/// Find <paramref name="item"> in the collection using jump search algorithm.
+		/// Collection needs to be sorted.
 		/// Complexity: O(sqrt(n))
 		/// </summary>
 		/// <typeparam name="T">Type that implements IComparable</typeparam>
@@ -118,7 +122,8 @@ namespace Algorithms
 
 		#region Exponential search
 		/// <summary>
-		/// Find <paramref name="item"> in the collection using exponential search algorithm
+		/// Find <paramref name="item"> in the collection using exponential search algorithm.
+		/// Collection needs to be sorted.
 		/// Complexity: O(log i)
 		/// </summary>
 		/// <typeparam name="T">Type that implements IComparable</typeparam>

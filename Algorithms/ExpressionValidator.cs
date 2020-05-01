@@ -9,7 +9,7 @@ namespace Algorithms
     private static readonly List<char> rightBrackets = new List<char> { ')', '>', ']', '}' };
 
     /// <summary>
-    /// We check if parentheses in an expression are balanced
+    /// We check if parentheses in an expression are balanced.
     /// </summary>
     /// <param name="input">expression as a string</param>
     /// <returns>true if expression is balanced, false otherwise</returns>
