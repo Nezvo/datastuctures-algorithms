@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataStructures.Interfaces;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +9,17 @@ namespace DataStructures
 	public class Graph
 	{
 		#region Internals and properties
-		private readonly Dictionary<string, Node> nodes = new Dictionary<string, Node>();
-		private readonly Dictionary<Node, List<Node>> adjacencyList = new Dictionary<Node, List<Node>>();
+		private readonly Dictionary<string, INode> nodes = new Dictionary<string, INode>();
+		private readonly Dictionary<INode, List<INode>> adjacencyList = new Dictionary<INode, List<INode>>();
 		#endregion
 
 		#region Public methods
-		public void AddNode(string label)
+		public void AddNode(INode node)
 		{
-			var node = new Node(label);
-			if (!nodes.ContainsKey(label))
-				nodes.Add(label, node);
+			if (!nodes.ContainsKey(node.Label))
+				nodes.Add(node.Label, node);
 			if (!adjacencyList.ContainsKey(node))
-				adjacencyList.Add(node, new List<Node>());
+				adjacencyList.Add(node, new List<INode>());
 		}
 
 		public void AddEdge(string from, string to)
@@ -75,7 +75,7 @@ namespace DataStructures
 			if (node == null)
 				return;
 
-			TraverseDepthFirst(node, new HashSet<Node>());
+			TraverseDepthFirst(node, new HashSet<INode>());
 		}
 
 		public void TraverseBreadthFirst(string root)
@@ -84,9 +84,9 @@ namespace DataStructures
 			if (node == null)
 				return;
 
-			var visited = new HashSet<Node>();
+			var visited = new HashSet<INode>();
 
-			var queue = new Queue<Node>();
+			var queue = new Queue<INode>();
 			queue.Enqueue(node);
 
 			while (queue.Any())
@@ -108,26 +108,26 @@ namespace DataStructures
 		public List<string> TopologicalSort()
 		{
 			var stack = new Stack();
-			var visited = new HashSet<Node>();
+			var visited = new HashSet<INode>();
 
 			foreach (var node in nodes.Values)
 				TopologicalSort(node, visited, stack);
 
 			var sorted = new List<string>();
 			while (stack.Count != 0)
-				sorted.Add(((Node)stack.Pop()).Label);
+				sorted.Add(((INode)stack.Pop()).Label);
 
 			return sorted;
 		}
 
 		public bool HasCycle()
 		{
-			var all = new HashSet<Node>();
+			var all = new HashSet<INode>();
 			foreach (var node in nodes.Values)
 				all.Add(node);
 
-			var visiting = new HashSet<Node>();
-			var visited = new HashSet<Node>();
+			var visiting = new HashSet<INode>();
+			var visited = new HashSet<INode>();
 
 			while (all.Any())
 			{
@@ -142,7 +142,7 @@ namespace DataStructures
 		#endregion
 
 		#region Private methods
-		private void TraverseDepthFirst(Node root, HashSet<Node> visited)
+		private void TraverseDepthFirst(INode root, HashSet<INode> visited)
 		{
 			Console.WriteLine(root.Label);
 			visited.Add(root);
@@ -152,7 +152,7 @@ namespace DataStructures
 					TraverseDepthFirst(node, visited);
 		}
 
-		private void TopologicalSort(Node node, HashSet<Node> visited, Stack stack)
+		private void TopologicalSort(INode node, HashSet<INode> visited, Stack stack)
 		{
 			if (visited.Contains(node))
 				return;
@@ -165,7 +165,7 @@ namespace DataStructures
 			stack.Push(node);
 		}
 
-		private bool HasCycle(Node node, HashSet<Node> all, HashSet<Node> visiting, HashSet<Node> visited)
+		private bool HasCycle(INode node, HashSet<INode> all, HashSet<INode> visiting, HashSet<INode> visited)
 		{
 			all.Remove(node);
 			visiting.Add(node);
@@ -186,18 +186,6 @@ namespace DataStructures
 			visited.Add(node);
 
 			return false;
-		}
-		#endregion
-
-		#region Helper classes
-		private class Node
-		{
-			public string Label { get; set; }
-
-			public Node(string label)
-			{
-				Label = label;
-			}
 		}
 		#endregion
 	}
