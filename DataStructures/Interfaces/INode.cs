@@ -2,9 +2,9 @@
 
 namespace DataStructures.Interfaces
 {
-	public interface INode<TKey> where TKey : IComparable
+	public interface INode<T> where T : IComparable
 	{
-		TKey Id { get; set; }
+		T Id { get; set; }
 		string Name { get; set; }
 	}
 }
