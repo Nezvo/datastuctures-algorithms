@@ -107,7 +107,7 @@ namespace DataStructures
 
 		public List<string> TopologicalSort()
 		{
-			var stack = new Stack();
+			var stack = new Stack(nodes.Count);
 			var visited = new HashSet<INode>();
 
 			foreach (var node in nodes.Values)

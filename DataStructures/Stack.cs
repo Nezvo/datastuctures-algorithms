@@ -2,20 +2,20 @@
 
 namespace DataStructures
 {
-	public class Stack<T>
+	public class Stack
 	{
 		#region Internals and properties
-		private readonly T[] items;
+		private readonly object[] items;
 		public int Count { get; private set; }
 
 		public Stack(int size)
 		{
-			items = new T[size];
+			items = new object[size];
 		} 
 		#endregion
 
 		#region Public methods
-		public void Push(T item)
+		public void Push(object item)
 		{
 			if (Count == items.Length)
 				throw new OverflowException();
@@ -23,7 +23,7 @@ namespace DataStructures
 			items[Count++] = item;
 		}
 
-		public T Pop()
+		public object Pop()
 		{
 			if (Count == 0)
 				throw new InvalidOperationException();
@@ -31,7 +31,7 @@ namespace DataStructures
 			return items[--Count];
 		}
 
-		public T Peek()
+		public object Peek()
 		{
 			if (Count == 0)
 				throw new InvalidOperationException();

@@ -5,13 +5,13 @@ namespace DataStructures
 	public class MinStack<T> where T : IComparable
 	{
 		#region Internals and properties
-		private readonly Stack<T> stack;
-		private readonly Stack<T> minStack;
+		private readonly Stack stack;
+		private readonly Stack minStack;
 
 		public MinStack(int size)
 		{
-			stack = new Stack<T>(size);
-			minStack = new Stack<T>(size);
+			stack = new Stack(size);
+			minStack = new Stack(size);
 		}
 		#endregion
 
@@ -31,15 +31,15 @@ namespace DataStructures
 			if (stack.IsEmpty())
 				throw new InvalidOperationException();
 
-			var top = stack.Pop();
+			var top = (T)stack.Pop();
 
-			if (minStack.Peek().CompareTo(top) == 0)
+			if (((T)minStack.Peek()).CompareTo(top) == 0)
 				minStack.Pop();
 
 			return top;
 		}
 
-		public T Min() => minStack.Peek();
+		public T Min() => (T)minStack.Peek();
 		#endregion
 	}
 }

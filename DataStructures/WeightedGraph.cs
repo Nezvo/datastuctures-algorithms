@@ -148,8 +148,7 @@ namespace DataStructures
 		#region Private methods
 		private List<string> BuildPath(Dictionary<Node, Node> previousNodes, Node toNode)
 		{
-
-			var stack = new Stack();
+			var stack = new Stack(nodes.Count);
 			stack.Push(toNode);
 			var previous = previousNodes[toNode];
 			while (previous != null)
