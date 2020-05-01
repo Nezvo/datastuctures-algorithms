@@ -1,37 +1,36 @@
-﻿using System;
+﻿using DataStructures.Interfaces;
+using System;
 using System.Linq;
 
 namespace DataStructures
 {
-	public class MinHeap<TSource, TKey> where TKey : IComparable
+	public class MinHeap<T> where T : IComparable
 	{
 		#region Internals and properties
-		private readonly TSource[] items;
-		private readonly Func<TSource, TKey> selector;
+		private readonly INode<T>[] items;
 
 		public int Count { get; private set; }
 
-		public MinHeap(int size, Func<TSource, TKey> selector)
+		public MinHeap(int size)
 		{
-			items = new TSource[size];
-			this.selector = selector;
+			items = new INode<T>[size];
 		}
 
 		public override string ToString() => $"[{string.Join(", ", items.Take(Count))}]";
 		#endregion
 
 		#region Public methods
-		public void Add(TSource item)
+		public void Add(INode<T> node)
 		{
 			if (IsFull())
 				throw new InvalidOperationException();
 
-			items[Count++] = item;
+			items[Count++] = node;
 
 			BubbleUp();
 		}
 
-		public TSource Remove()
+		public INode<T> Remove()
 		{
 			if (IsEmpty())
 				throw new InvalidOperationException();
@@ -69,7 +68,7 @@ namespace DataStructures
 			if (!HasRightChild(index))
 				return LeftChildIndex(index);
 
-			return (selector(LeftChild(index)).CompareTo(selector(RightChild(index)))) < 0 ?
+			return (LeftChild(index).Value.CompareTo(RightChild(index).Value)) < 0 ?
 							LeftChildIndex(index) :
 							RightChildIndex(index);
 		}
@@ -83,17 +82,17 @@ namespace DataStructures
 			if (!HasLeftChild(index))
 				return true;
 
-			var isValid = selector(items[index]).CompareTo(selector(LeftChild(index))) <= 0;
+			var isValid = items[index].Value.CompareTo(LeftChild(index).Value) <= 0;
 
 			if (HasRightChild(index))
-				isValid &= selector(items[index]).CompareTo(selector(RightChild(index))) <= 0;
+				isValid &= items[index].Value.CompareTo(RightChild(index).Value) <= 0;
 
 			return isValid;
 		}
 
-		private TSource RightChild(int index) => items[RightChildIndex(index)];
+		private INode<T> RightChild(int index) => items[RightChildIndex(index)];
 
-		private TSource LeftChild(int index) => items[LeftChildIndex(index)];
+		private INode<T> LeftChild(int index) => items[LeftChildIndex(index)];
 
 		private int LeftChildIndex(int index) => index * 2 + 1;
 
@@ -102,7 +101,7 @@ namespace DataStructures
 		private void BubbleUp()
 		{
 			var index = Count - 1;
-			while (index > 0 && selector(items[index]).CompareTo(selector(items[Parent(index)])) < 0)
+			while (index > 0 && items[index].Value.CompareTo(items[Parent(index)].Value) < 0)
 			{
 				Swap(index, Parent(index));
 				index = Parent(index);
@@ -116,20 +115,6 @@ namespace DataStructures
 			var temp = items[first];
 			items[first] = items[second];
 			items[second] = temp;
-		}
-		#endregion
-
-		#region Helper classes
-		private class Node
-		{
-			public int Key { get; set; }
-			public string Value { get; set; }
-
-			public Node(int key, string value)
-			{
-				Key = key;
-				Value = value;
-			}
 		}
 		#endregion
 	}
