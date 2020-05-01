@@ -1,31 +1,32 @@
 ﻿using DataStructures.Helpers;
+using DataStructures.Interfaces;
 using System;
 
 namespace DataStructures
 {
-	public class PriorityQueueWithHeap<TSource, TKey> where TKey : IComparable
+	public class PriorityQueueWithHeap<T> where T : IComparable
 	{
 		#region Internals and properties
 		private readonly PriorityQueueType type;
-		private readonly Heap<TSource, TKey> maxHeap;
-		private readonly MinHeap<TSource, TKey> minHeap;
+		private readonly Heap<T> maxHeap;
+		private readonly MinHeap<T> minHeap;
 		#endregion
 
 		#region Public methods
-		public PriorityQueueWithHeap(int size, Func<TSource, TKey> selector, PriorityQueueType type = PriorityQueueType.Max)
+		public PriorityQueueWithHeap(int size, PriorityQueueType type = PriorityQueueType.Max)
 		{
 			this.type = type;
-			maxHeap = new Heap<TSource, TKey>(size, selector);
-			minHeap = new MinHeap<TSource, TKey>(size, selector);
+			maxHeap = new Heap<T>(size);
+			minHeap = new MinHeap<T>(size);
 		}
 
-		public void Enqueue(TSource item)
+		public void Enqueue(INode<T> item)
 		{
 			maxHeap.Add(item);
 			minHeap.Add(item);
 		}
 
-		public TSource Dequeue() => type == PriorityQueueType.Max ? maxHeap.Remove() : minHeap.Remove();
+		public INode<T> Dequeue() => type == PriorityQueueType.Max ? maxHeap.Remove() : minHeap.Remove();
 
 		public bool IsEmpty() => maxHeap.IsEmpty();
 		#endregion

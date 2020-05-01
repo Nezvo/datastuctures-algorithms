@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using DataStructures.Helpers;
+using DataStructures.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using DataStructures.Helpers;
 
 namespace DataStructures
 {
@@ -62,12 +62,12 @@ namespace DataStructures
 
 			var visited = new HashSet<Node>();
 
-			PriorityQueueWithArray<NodeEntry, int> queue = new PriorityQueueWithArray<NodeEntry, int>(nodes.Count, (nodeEntry) => nodeEntry.Priority, PriorityQueueType.Min);
+			PriorityQueueWithArray queue = new PriorityQueueWithArray(nodes.Count, PriorityQueueType.Min);
 			queue.Enqueue(new NodeEntry(fromNode, 0));
 
 			while (!queue.IsEmpty())
 			{
-				var current = queue.Dequeue().Node;
+				var current = ((NodeEntry)queue.Dequeue()).Node;
 				visited.Add(current);
 
 				foreach (var edge in current.Edges)
@@ -110,7 +110,7 @@ namespace DataStructures
 				return tree;
 
 			var elementCount = nodes.Values.SelectMany(x => x.Edges).Count();
-			PriorityQueueWithArray<Edge, int> edges = new PriorityQueueWithArray<Edge, int>(elementCount, (edge) => edge.Weight, PriorityQueueType.Min);
+			PriorityQueueWithArray edges = new PriorityQueueWithArray(elementCount, PriorityQueueType.Min);
 
 			var enumerator = nodes.Values.GetEnumerator();
 			enumerator.MoveNext();
@@ -124,7 +124,7 @@ namespace DataStructures
 
 			while (tree.nodes.Count < nodes.Count)
 			{
-				var minEdge = edges.Dequeue();
+				var minEdge = (Edge)edges.Dequeue();
 				var nextNode = minEdge.To;
 
 				if (tree.ContainsNode(nextNode.Label))
@@ -197,21 +197,23 @@ namespace DataStructures
 			public void AddEdge(Node to, int weight) => Edges.Add(new Edge(this, to, weight));
 		}
 
-		private class Edge
+		private class Edge : IPriorityQueueItem
 		{
 			public Node From { get; set; }
 			public Node To { get; set; }
 			public int Weight { get; set; }
+			public int Priority { get; set; }
 
 			public Edge(Node from, Node to, int weight)
 			{
 				From = from;
 				To = to;
 				Weight = weight;
+				Priority = weight;
 			}
 		}
 
-		private class NodeEntry
+		private class NodeEntry : IPriorityQueueItem
 		{
 			public Node Node { get; set; }
 			public int Priority { get; set; }
