@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataStructures
 {
-	public class LinkedList<T> where T : IComparable
+	public class LinkedList<T>
 	{
 		#region Internals and properties
 		private Node first;
@@ -49,7 +49,7 @@ namespace DataStructures
 			var current = first;
 			while (current != null)
 			{
-				if (current.Value.CompareTo(item) == 0)
+				if (current.Value.Equals(item))
 					return index;
 
 				current = current.Next;
