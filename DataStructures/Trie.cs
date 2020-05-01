@@ -5,6 +5,9 @@ using System.Text;
 
 namespace DataStructures
 {
+	/// <summary>
+	/// Trie implementation.
+	/// </summary>
 	public class Trie
 	{
 		#region Internals and properties

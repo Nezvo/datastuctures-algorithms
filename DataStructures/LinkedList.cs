@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace DataStructures
 {
+	/// <summary>
+	/// Linked list implementation
+	/// </summary>
+	/// <typeparam name="T">Type of items that will be added to linked list</typeparam>
 	public class LinkedList<T>
 	{
 		#region Internals and properties

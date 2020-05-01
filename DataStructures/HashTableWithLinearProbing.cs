@@ -2,6 +2,11 @@
 
 namespace DataStructures
 {
+	/// <summary>
+	/// Hash table implementation using linear probing to handle collisions
+	/// </summary>
+	/// <typeparam name="TKey">Key tyoe that must implement IComparable</typeparam>
+	/// <typeparam name="TValue">Value Type</typeparam>
 	public class HashTableWithLinearProbing<TKey, TValue> where TKey : IComparable
 	{
 		#region Internals and properties

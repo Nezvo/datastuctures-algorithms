@@ -2,6 +2,11 @@
 
 namespace DataStructures
 {
+	/// <summary>
+	/// Hash table implementation using linked lists to handle collisions
+	/// </summary>
+	/// <typeparam name="TKey">Key tyoe that must implement IComparable</typeparam>
+	/// <typeparam name="TValue">Value Type</typeparam>
 	public class HashTableWithChaining<TKey, TValue> where TKey : IComparable
 	{
 		#region Internals and properties

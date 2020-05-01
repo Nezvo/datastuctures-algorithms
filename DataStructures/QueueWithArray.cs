@@ -2,6 +2,10 @@
 
 namespace DataStructures
 {
+	/// <summary>
+	/// Queue implementation using array
+	/// </summary>
+	/// <typeparam name="T">Type of items that will be added to the queue</typeparam>
 	public class QueueWithArray<T>
 	{
 		#region Internals and properties

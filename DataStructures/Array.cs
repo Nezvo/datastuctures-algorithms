@@ -3,6 +3,10 @@ using System.Linq;
 
 namespace DataStructures
 {
+  /// <summary>
+  /// Array implementation
+  /// </summary>
+  /// <typeparam name="T">Type that implements IComparable that will be put into an array</typeparam>
   public class Array<T> where T : IComparable
 	{
     #region Internals and properties

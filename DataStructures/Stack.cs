@@ -2,6 +2,9 @@
 
 namespace DataStructures
 {
+	/// <summary>
+	/// Stack implementation
+	/// </summary>
 	public class Stack
 	{
 		#region Internals and properties

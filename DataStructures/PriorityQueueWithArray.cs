@@ -4,6 +4,10 @@ using System;
 
 namespace DataStructures
 {
+	/// <summary>
+	/// Priority queue implementation using array.
+	/// Objects that will be added to the queue must implement IPriorityQueueItem
+	/// </summary>
 	public class PriorityQueueWithArray
 	{
 		#region Internals and properties
@@ -11,6 +15,12 @@ namespace DataStructures
 		private readonly PriorityQueueType type;
 		public int Count { get; private set; }
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		/// <param name="size">Size of the queue</param>
+		/// <param name="type">Enum which indicates whether items with the lowest or
+		/// highest priority value will be used to determine maximum priority </param>
 		public PriorityQueueWithArray(int size, PriorityQueueType type = PriorityQueueType.Max)
 		{
 			items = new IPriorityQueueItem[size];

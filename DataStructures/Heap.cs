@@ -4,6 +4,11 @@ using System.Linq;
 
 namespace DataStructures
 {
+	/// <summary>
+	/// Max Heap implementation, where item on top will always have the biggest Id.
+	/// Object that will be added to the tree must implement INode
+	/// </summary>
+	/// <typeparam name="T">Type of Id property in an object that will be added to the heap</typeparam>
 	public class Heap<T> where T : IComparable
 	{
 		#region Internals and properties
