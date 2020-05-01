@@ -6,7 +6,14 @@ namespace Algorithms
 	public static class SearchingAlgorithms
 	{
 		#region Linear search
-		// O(n)
+		/// <summary>
+		/// Find <paramref name="item"> in the collection using linear search algorithm
+		/// Complexity: O(n)
+		/// </summary>
+		/// <typeparam name="T">Type that implements IComparable</typeparam>
+		/// <param name="collection">IList collection</param>
+		/// <param name="item">item that you want to find</param>
+		/// <returns>Index of an item, -1 if it doesn't exist</returns>
 		public static int LinearSearch<T>(this IList<T> collection, T item) where T : IComparable
 		{
 			for (int i = 0; i < collection.Count; i++)
@@ -18,7 +25,14 @@ namespace Algorithms
 		#endregion
 
 		#region Binary search
-		// O(log n)
+		/// <summary>
+		/// Find <paramref name="item"> in the collection using binary search algorithm
+		/// Complexity: O(log n)
+		/// </summary>
+		/// <typeparam name="T">Type that implements IComparable</typeparam>
+		/// <param name="collection">IList collection</param>
+		/// <param name="item">item that you want to find</param>
+		/// <returns>Index of an item, -1 if it doesn't exist</returns>
 		public static int BinarySearch<T>(this IList<T> collection, T item) where T : IComparable => BinarySearch(collection, item, 0, collection.Count - 1);
 
 		private static int BinarySearch<T>(IList<T> collection, T item, int start, int end) where T : IComparable
@@ -38,7 +52,14 @@ namespace Algorithms
 		#endregion
 
 		#region Ternary search
-		// O(log3 n)
+		/// <summary>
+		/// Find <paramref name="item"> in the collection using ternary search algorithm
+		/// Complexity: O(log3 n)
+		/// </summary>
+		/// <typeparam name="T">Type that implements IComparable</typeparam>
+		/// <param name="collection">IList collection</param>
+		/// <param name="item">item that you want to find</param>
+		/// <returns>Index of an item, -1 if it doesn't exist</returns>
 		public static int TernarySearch<T>(this IList<T> collection, T item) where T : IComparable => TernarySearch(collection, item, 0, collection.Count - 1);
 
 		private static int TernarySearch<T>(IList<T> collection, T item, int start, int end) where T : IComparable
@@ -65,7 +86,14 @@ namespace Algorithms
 		#endregion
 
 		#region Jump search
-		// O(sqrt(n))
+		/// <summary>
+		/// Find <paramref name="item"> in the collection using jump search algorithm
+		/// Complexity: O(sqrt(n))
+		/// </summary>
+		/// <typeparam name="T">Type that implements IComparable</typeparam>
+		/// <param name="collection">IList collection</param>
+		/// <param name="item">item that you want to find</param>
+		/// <returns>Index of an item, -1 if it doesn't exist</returns>
 		public static int JumpSearch<T>(this IList<T> collection, T item) where T : IComparable
 		{
 			int blockSize = (int)Math.Sqrt(collection.Count);
@@ -89,7 +117,14 @@ namespace Algorithms
 		#endregion
 
 		#region Exponential search
-		// O(log i)
+		/// <summary>
+		/// Find <paramref name="item"> in the collection using exponential search algorithm
+		/// Complexity: O(log i)
+		/// </summary>
+		/// <typeparam name="T">Type that implements IComparable</typeparam>
+		/// <param name="collection">IList collection</param>
+		/// <param name="item">item that you want to find</param>
+		/// <returns>Index of an item, -1 if it doesn't exist</returns>
 		public static int ExponentialSearch<T>(this IList<T> collection, T item) where T : IComparable
 		{
 			int bound = 1;

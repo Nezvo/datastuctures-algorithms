@@ -7,7 +7,12 @@ namespace Algorithms
 	public static class SortingAlgorithms
 	{
 		#region Bubble sort
-		// O(n^2)
+		/// <summary>
+		/// Sorts the collection using bubble sort algorithm
+		/// Complexity: O(n^2)
+		/// </summary>
+		/// <typeparam name="T">Type that implements IComparable</typeparam>
+		/// <param name="collection">IList collection that you want to sort</param>
 		public static void BubbleSort<T>(this IList<T> collection) where T : IComparable
 		{
 			for (int i = 0; i < collection.Count; i++)
@@ -27,7 +32,12 @@ namespace Algorithms
 		#endregion
 
 		#region Selection sort
-		// O(n^2)
+		/// <summary>
+		/// Sorts the collection using selection sort algorithm
+		/// Complexity: O(n^2)
+		/// </summary>
+		/// <typeparam name="T">Type that implements IComparable</typeparam>
+		/// <param name="collection">IList collection that you want to sort</param>
 		public static void SelectionSort<T>(this IList<T> collection) where T : IComparable
 		{
 			for (int i = 0; i < collection.Count; i++)
@@ -43,7 +53,12 @@ namespace Algorithms
 		#endregion
 
 		#region InsertionSort
-		// O(n^2)
+		/// <summary>
+		/// Sorts the collection using insertion sort algorithm
+		/// Complexity: O(n^2)
+		/// </summary>
+		/// <typeparam name="T">Type that implements IComparable</typeparam>
+		/// <param name="collection">IList collection that you want to sort</param>
 		public static void InsertionSort<T>(this IList<T> collection) where T : IComparable
 		{
 			// We assume that the correct item is in the first position
@@ -62,7 +77,12 @@ namespace Algorithms
 		#endregion
 
 		#region Merge sort
-		// O(n log n)
+		/// <summary>
+		/// Sorts the collection using merge sort algorithm
+		/// Complexity: O(n log n)
+		/// </summary>
+		/// <typeparam name="T">Type that implements IComparable</typeparam>
+		/// <param name="collection">IList collection that you want to sort</param>
 		public static void MergeSort<T>(this IList<T> collection) where T : IComparable
 		{
 			if (collection.Count < 2)
@@ -106,7 +126,12 @@ namespace Algorithms
 		#endregion
 
 		#region Quick sort
-		// O(n log n)
+		/// <summary>
+		/// Sorts the collection using quick sort algorithm
+		/// Complexity: O(n log n)
+		/// </summary>
+		/// <typeparam name="T">Type that implements IComparable</typeparam>
+		/// <param name="collection">IList collection that you want to sort</param>
 		public static void QuickSort<T>(this IList<T> collection) where T : IComparable
 		{
 			QuickSort(collection, 0, collection.Count - 1);
@@ -139,7 +164,12 @@ namespace Algorithms
 		#endregion
 
 		#region Counting sort
-		// O(n)
+		/// <summary>
+		/// Sorts the collection using counting sort algorithm
+		/// Complexity: O(n)
+		/// </summary>
+		/// <typeparam name="T">Type that implements IComparable</typeparam>
+		/// <param name="collection">IList collection that you want to sort</param>
 		public static void CountingSort(this IList<int> collection)
 		{
 			var max = GetMax(collection);
@@ -156,7 +186,12 @@ namespace Algorithms
 		#endregion
 
 		#region Bucket sort
-		// O(n)
+		/// <summary>
+		/// Sorts the collection using bucket sort algorithm
+		/// Complexity: O(n)
+		/// </summary>
+		/// <typeparam name="T">Type that implements IComparable</typeparam>
+		/// <param name="collection">IList collection that you want to sort</param>
 		public static void BucketSort<T>(this IList<T> collection) where T : IComparable
 		{
 			var numberOfBuckets = Math.Sqrt(collection.Count);
@@ -187,6 +222,13 @@ namespace Algorithms
 		#endregion
 
 		#region Helpers
+		/// <summary>
+		/// Swaps two elements inside a collection
+		/// </summary>
+		/// <typeparam name="T">Type of collection</typeparam>
+		/// <param name="collection">IList collection</param>
+		/// <param name="x">First index for swap</param>
+		/// <param name="y">Second index for swap</param>
 		private static void Swap<T>(this IList<T> collection, int x, int y)
 		{
 			var temp = collection[x];
@@ -194,6 +236,12 @@ namespace Algorithms
 			collection[y] = temp;
 		}
 
+		/// <summary>
+		/// Returns max item in the collection
+		/// </summary>
+		/// <typeparam name="T">Type that implements IComparable</typeparam>
+		/// <param name="collection">Collection that you want to find max item for</param>
+		/// <returns>Max item in the collection</returns>
 		private static T GetMax<T>(IList<T> collection) where T : IComparable
 		{
 			var max = collection.First();

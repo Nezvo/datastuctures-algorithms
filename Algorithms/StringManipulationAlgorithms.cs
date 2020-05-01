@@ -8,7 +8,14 @@ namespace Algorithms
 {
 	public static class StringManipulationAlgorithms
 	{
-		public static string ReverseUsingStack(this string input)
+		/// <summary>
+		/// Reverses string
+		/// </summary>
+		/// <param name="input">String that you want to reverse</param>
+		/// <returns>Reversed string</returns>
+		public static string Reverse(this string input) => input.ReverseUsingIteration();
+
+		private static string ReverseUsingStack(this string input)
 		{
 			if (string.IsNullOrEmpty(input))
 				return string.Empty;
@@ -25,6 +32,51 @@ namespace Algorithms
 			return reversed.ToString();
 		}
 
+		private static string ReverseUsingIteration(this string input)
+		{
+			if (string.IsNullOrEmpty(input))
+				return string.Empty;
+
+			var reversedString = new StringBuilder();
+
+			for (int i = input.Length - 1; i >= 0; i--)
+				reversedString.Append(input[i]);
+
+			return reversedString.ToString();
+		}
+
+		private static string ReverseUsingArray(this string input)
+		{
+			if (string.IsNullOrEmpty(input))
+				return string.Empty;
+
+			var inputArray = input.ToCharArray();
+			Array.Reverse(inputArray);
+
+			return new string(inputArray);
+		}
+
+		/// <summary>
+		/// Reverses the order of words in a string
+		/// </summary>
+		/// <param name="input">String that you want to perform a operation on</param>
+		/// <returns>String with the reversed order of words</returns>
+		public static string ReverseWords(this string input)
+		{
+			if (string.IsNullOrEmpty(input))
+				return string.Empty;
+
+			var words = input.Trim().Split(' ');
+			Array.Reverse(words);
+
+			return string.Join(" ", words);
+		}
+
+		/// <summary>
+		/// Finds first non repeting character inside a string
+		/// </summary>
+		/// <param name="input">String that you want to perform search on</param>
+		/// <returns>First non repeting character</returns>
 		public static char? FindFirstNonRepeatingChar(this string input)
 		{
 			if (string.IsNullOrEmpty(input))
@@ -48,6 +100,11 @@ namespace Algorithms
 			return null;
 		}
 
+		/// <summary>
+		/// Finds first repeated character inside a string
+		/// </summary>
+		/// <param name="input">String that you want to perform search on</param>
+		/// <returns>First repeated character</returns>
 		public static char? FindFirstRepeatedChar(this string input)
 		{
 			if (string.IsNullOrEmpty(input))
@@ -66,6 +123,11 @@ namespace Algorithms
 			return null;
 		}
 
+		/// <summary>
+		/// Counts vowels inside a string
+		/// </summary>
+		/// <param name="input">String that you want to count vowels for</param>
+		/// <returns>Vowels count</returns>
 		public static int CountVowels(this string input)
 		{
 			if (string.IsNullOrEmpty(input))
@@ -81,41 +143,12 @@ namespace Algorithms
 			return count;
 		}
 
-		public static string ReverseUsingIteration(this string input)
-		{
-			if (string.IsNullOrEmpty(input))
-				return string.Empty;
-
-			var reversedString = new StringBuilder();
-
-			for (int i = input.Length - 1; i >= 0; i--)
-				reversedString.Append(input[i]);
-
-			return reversedString.ToString();
-		}
-
-		public static string ReverseUsingArray(this string input)
-		{
-			if (string.IsNullOrEmpty(input))
-				return string.Empty;
-
-			var inputArray = input.ToCharArray();
-			Array.Reverse(inputArray);
-
-			return new string(inputArray);
-		}
-
-		public static string ReverseWords(this string input)
-		{
-			if (string.IsNullOrEmpty(input))
-				return string.Empty;
-
-			var words = input.Trim().Split(' ');
-			Array.Reverse(words);
-
-			return string.Join(" ", words);
-		}
-
+		/// <summary>
+		/// Checks if a string is a rotation of target string
+		/// </summary>
+		/// <param name="input1">First string that you want to compare</param>
+		/// <param name="input2">Second string that you want to compare</param>
+		/// <returns></returns>
 		public static bool IsRotationOf(this string input1, string input2) => input1 != null && input2 != null && (input1.Length == input2.Length) && $"{input1}{input1}".Contains(input2);
 
 		public static string RemoveDuplicates(this string input)
@@ -135,6 +168,11 @@ namespace Algorithms
 			return output.ToString();
 		}
 
+		/// <summary>
+		/// Gets character that occured the most times inside a string
+		/// </summary>
+		/// <param name="input">String that you want to perform search on</param>
+		/// <returns>Character that occured the most times</returns>
 		public static char? GetMaxOccuringChar(this string input)
 		{
 			if (string.IsNullOrEmpty(input))
@@ -156,6 +194,11 @@ namespace Algorithms
 			return (char)maxIndex;
 		}
 
+		/// <summary>
+		/// Capitalizes every word inside an string
+		/// </summary>
+		/// <param name="input">String that you want to perform a operation on</param>
+		/// <returns>String with every word capitalized</returns>
 		public static string CapitalizeEveryWord(this string input)
 		{
 			if (string.IsNullOrEmpty(input))
@@ -168,6 +211,12 @@ namespace Algorithms
 			return string.Join(" ", words);
 		}
 
+		/// <summary>
+		/// Checks if a string is an anagram of second string
+		/// </summary>
+		/// <param name="input1">First string that you want to compare</param>
+		/// <param name="input2">Second string that you want to compare</param>
+		/// <returns>True if the second string is an anagram of the first, false otherwise</returns>
 		public static bool IsAnagramOf(this string input1, string input2) => AreAnagramUsingHistogramming(input1, input2);
 
 		private static bool AreAnagramUsingSorting(string input1, string input2)
@@ -213,6 +262,11 @@ namespace Algorithms
 			return true;
 		}
 
+		/// <summary>
+		/// Cheks if a string is a palindrome
+		/// </summary>
+		/// <param name="input">String that you want to check</param>
+		/// <returns>true if string is a palindrome, false otherwise</returns>
 		public static bool IsPalindrome(this string input) => IsPalindromeUsingPointers(input);
 
 		private static bool IsPalindromeUsingReverse(string input)

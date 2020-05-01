@@ -42,7 +42,7 @@ namespace DsAlgo
 
 			Console.WriteLine($"First repeating char in banana: {"banana".FindFirstRepeatedChar()}");
 
-			Console.WriteLine($"Reversed string of potato is {"potato".ReverseUsingStack()}");
+			Console.WriteLine($"Reversed string of potato is {"potato".Reverse()}");
 
 			Console.WriteLine($"Expression '((x + y) = (y + x)' is {(ExpressionValidator.IsBalanced("((x + y) = (y + x)") ? "balanced" : "not balanced")}");
 
@@ -67,7 +67,6 @@ namespace DsAlgo
 			Console.WriteLine($"ExponentialSearch: 7 at index {numbers.JumpSearch(7)}");
 
 			Console.WriteLine($"Vowels in 'hello': '{"hello".CountVowels()}'");
-			Console.WriteLine($"Reversed 'hello': '{"hello".ReverseUsingArray()}'");
 			Console.WriteLine($"Reversed words of 'My name is Jeff': '{"My name is Jeff".ReverseWords()}'");
 			Console.WriteLine($"'BCDA' is rotation of 'ABCD': {"ABCD".IsRotationOf("BCDA")}");
 			Console.WriteLine($"Removed duplicates in 'aaabbbbbccccccc': '{"aaabbbbbccccccc".RemoveDuplicates()}'");

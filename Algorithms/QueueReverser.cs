@@ -6,6 +6,11 @@ namespace Algorithms
 {
 	public static class QueueReverser<T>
 	{
+		/// <summary>
+		/// Reverser the order of the <paramref name="k"/> items in the queue
+		/// </summary>
+		/// <param name="queue">Queue that you want to reverse</param>
+		/// <param name="k">Number of items that you want to reverse</param>
 		public static void Reverse(Queue<T> queue, int k)
 		{
 			if (k < 0 || k > queue.Count)

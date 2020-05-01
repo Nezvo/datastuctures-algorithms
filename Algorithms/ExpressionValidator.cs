@@ -8,6 +8,11 @@ namespace Algorithms
     private static readonly List<char> leftBrackets = new List<char> { '(', '<', '[', '{' };
     private static readonly List<char> rightBrackets = new List<char> { ')', '>', ']', '}' };
 
+    /// <summary>
+    /// We check if parentheses in an expression are balanced
+    /// </summary>
+    /// <param name="input">expression as a string</param>
+    /// <returns>true if expression is balanced, false otherwise</returns>
     public static bool IsBalanced(string input)
     {
       var stack = new Stack<char>();
