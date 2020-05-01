@@ -2,11 +2,11 @@
 
 namespace DataStructures.Interfaces
 {
-	public interface IBinaryNode<T> where T : IComparable
+	public interface IBinaryNode<TKey> where TKey : IComparable
 	{
-		T Value { get; set; }
+		TKey Id { get; set; }
 		int Height { get; set; }
-		IBinaryNode<T> LeftChild { get; set; }
-		IBinaryNode<T> RightChild { get; set; }
+		IBinaryNode<TKey> LeftChild { get; set; }
+		IBinaryNode<TKey> RightChild { get; set; }
 	}
 }

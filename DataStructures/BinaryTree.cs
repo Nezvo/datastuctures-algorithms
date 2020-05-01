@@ -22,7 +22,7 @@ namespace DataStructures
 			var current = root;
 			while (true)
 			{
-				if (node.Value.CompareTo(current.Value) < 0)
+				if (node.Id.CompareTo(current.Id) < 0)
 				{
 					if (current.LeftChild == null)
 					{
@@ -118,7 +118,7 @@ namespace DataStructures
 			if (node == null)
 				return;
 
-			Console.WriteLine(node.Value);
+			Console.WriteLine(node.Id);
 			TraversePreOrder(node.LeftChild);
 			TraversePreOrder(node.RightChild);
 		}
@@ -129,7 +129,7 @@ namespace DataStructures
 				return;
 
 			TraverseInOrder(node.LeftChild);
-			Console.WriteLine(node.Value);
+			Console.WriteLine(node.Id);
 			TraverseInOrder(node.RightChild);
 		}
 
@@ -140,7 +140,7 @@ namespace DataStructures
 
 			TraversePostOrder(node.LeftChild);
 			TraversePostOrder(node.RightChild);
-			Console.WriteLine(node.Value);
+			Console.WriteLine(node.Id);
 		}
 
 		private int Height(IBinaryNode<T> node)
@@ -161,7 +161,7 @@ namespace DataStructures
 		private T Min(IBinaryNode<T> node)
 		{
 			if (node.LeftChild == null)
-				return node.Value;
+				return node.Id;
 
 			return Min(node.LeftChild);
 		}
@@ -169,7 +169,7 @@ namespace DataStructures
 		private T Max(IBinaryNode<T> node)
 		{
 			if (node.RightChild == null)
-				return node.Value;
+				return node.Id;
 
 			return Max(node.RightChild);
 		}
@@ -180,7 +180,7 @@ namespace DataStructures
 				return true;
 
 			if (first != null && second != null)
-				return first.Value.CompareTo(second.Value) == 0
+				return first.Id.CompareTo(second.Id) == 0
 								&& Equals(first.LeftChild, second.LeftChild)
 								&& Equals(first.RightChild, second.RightChild);
 
@@ -194,7 +194,7 @@ namespace DataStructures
 
 			if (distance == 0)
 			{
-				list.Add(node.Value);
+				list.Add(node.Id);
 				return;
 			}
 
@@ -229,7 +229,7 @@ namespace DataStructures
 			if (node == null)
 				return false;
 
-			if (node.Value.CompareTo(value) == 0)
+			if (node.Id.CompareTo(value) == 0)
 				return true;
 
 			return Contains(node.LeftChild, value) || Contains(node.RightChild, value);
@@ -243,8 +243,8 @@ namespace DataStructures
 			var result = false;
 			if (node.LeftChild != null && node.RightChild != null)
 			{
-				result = (node.LeftChild.Value.CompareTo(first) == 0 && node.RightChild.Value.CompareTo(second) == 0) ||
-										 (node.RightChild.Value.CompareTo(first) == 0 && node.LeftChild.Value.CompareTo(second) == 0);
+				result = (node.LeftChild.Id.CompareTo(first) == 0 && node.RightChild.Id.CompareTo(second) == 0) ||
+										 (node.RightChild.Id.CompareTo(first) == 0 && node.LeftChild.Id.CompareTo(second) == 0);
 			}
 
 			return result ||
@@ -261,7 +261,7 @@ namespace DataStructures
 			if (node == null)
 				return false;
 
-			if (node.Value.CompareTo(value) == 0)
+			if (node.Id.CompareTo(value) == 0)
 				return true;
 
 			// If we find the target value in the left or right sub-trees, that means
@@ -269,7 +269,7 @@ namespace DataStructures
 			if (GetAncestors(node.LeftChild, value, list) ||
 					GetAncestors(node.RightChild, value, list))
 			{
-				list.Add(node.Value);
+				list.Add(node.Id);
 				return true;
 			}
 

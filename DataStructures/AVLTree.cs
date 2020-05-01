@@ -22,7 +22,7 @@ namespace DataStructures
 			if (root == null)
 				return node;
 
-			if (node.Value.CompareTo(root.Value) < 0)
+			if (node.Id.CompareTo(root.Id) < 0)
 				root.LeftChild = Add(root.LeftChild, node);
 			else
 				root.RightChild = Add(root.RightChild, node);

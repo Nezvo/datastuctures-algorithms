@@ -15,8 +15,8 @@ namespace DataStructures
 		#region Public methods
 		public void AddNode(INode<T> node)
 		{
-			if (!nodes.ContainsKey(node.Label))
-				nodes.Add(node.Label, node);
+			if (!nodes.ContainsKey(node.Name))
+				nodes.Add(node.Name, node);
 			if (!adjacencyList.ContainsKey(node))
 				adjacencyList.Add(node, new List<INode<T>>());
 		}
@@ -38,7 +38,7 @@ namespace DataStructures
 			{
 				var targets = adjacencyList[source];
 				if (targets.Any())
-					Console.WriteLine($"{source.Label} is connected to {string.Join(", ", targets.Select(x => x.Label))}");
+					Console.WriteLine($"{source.Name} is connected to {string.Join(", ", targets.Select(x => x.Name))}");
 			}
 		}
 
@@ -93,7 +93,7 @@ namespace DataStructures
 				if (visited.Contains(current))
 					continue;
 
-				Console.WriteLine(current.Label);
+				Console.WriteLine(current.Name);
 				visited.Add(current);
 
 				foreach (var neighbour in adjacencyList[current])
@@ -112,7 +112,7 @@ namespace DataStructures
 
 			var sorted = new List<string>();
 			while (stack.Count != 0)
-				sorted.Add(((INode<T>)stack.Pop()).Label);
+				sorted.Add(((INode<T>)stack.Pop()).Name);
 
 			return sorted;
 		}
@@ -141,7 +141,7 @@ namespace DataStructures
 		#region Private methods
 		private void TraverseDepthFirst(INode<T> root, HashSet<INode<T>> visited)
 		{
-			Console.WriteLine(root.Label);
+			Console.WriteLine(root.Name);
 			visited.Add(root);
 
 			foreach (var node in adjacencyList[root])

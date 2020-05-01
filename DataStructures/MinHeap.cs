@@ -68,7 +68,7 @@ namespace DataStructures
 			if (!HasRightChild(index))
 				return LeftChildIndex(index);
 
-			return (LeftChild(index).Value.CompareTo(RightChild(index).Value)) < 0 ?
+			return (LeftChild(index).Id.CompareTo(RightChild(index).Id)) < 0 ?
 							LeftChildIndex(index) :
 							RightChildIndex(index);
 		}
@@ -82,10 +82,10 @@ namespace DataStructures
 			if (!HasLeftChild(index))
 				return true;
 
-			var isValid = items[index].Value.CompareTo(LeftChild(index).Value) <= 0;
+			var isValid = items[index].Id.CompareTo(LeftChild(index).Id) <= 0;
 
 			if (HasRightChild(index))
-				isValid &= items[index].Value.CompareTo(RightChild(index).Value) <= 0;
+				isValid &= items[index].Id.CompareTo(RightChild(index).Id) <= 0;
 
 			return isValid;
 		}
@@ -101,7 +101,7 @@ namespace DataStructures
 		private void BubbleUp()
 		{
 			var index = Count - 1;
-			while (index > 0 && items[index].Value.CompareTo(items[Parent(index)].Value) < 0)
+			while (index > 0 && items[index].Id.CompareTo(items[Parent(index)].Id) < 0)
 			{
 				Swap(index, Parent(index));
 				index = Parent(index);
