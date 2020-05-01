@@ -1,37 +1,35 @@
-﻿using System;
+﻿using DataStructures.Interfaces;
+using System;
 using System.Linq;
 
 namespace DataStructures
 {
-	public class Heap<TSource, TKey> where TKey : IComparable
+	public class Heap<T> where T : IComparable
 	{
 		#region Internals and properties
-		private readonly TSource[] items;
-		private readonly Func<TSource, TKey> selector;
+		private readonly INode<T>[] items;
 
 		public int Count { get; private set; }
+		private INode<T>[] Items => items.Take(Count).ToArray();
 
-		public Heap(int size, Func<TSource, TKey> selector)
+		public Heap(int size)
 		{
-			items = new TSource[size];
-			this.selector = selector;
+			items = new INode<T>[size];
 		}
-
-		public override string ToString() => $"[{string.Join(", ", items.Take(Count))}]";
 		#endregion
 
 		#region Public methods
-		public void Add(TSource value)
+		public void Add(INode<T> node)
 		{
 			if (IsFull())
 				throw new InvalidOperationException();
 
-			items[Count++] = value;
+			items[Count++] = node;
 
 			BubbleUp();
 		}
 
-		public TSource Remove()
+		public INode<T> Remove()
 		{
 			if (IsEmpty())
 				throw new InvalidOperationException();
@@ -48,7 +46,7 @@ namespace DataStructures
 
 		public bool IsFull() => Count == items.Length;
 
-		public TSource Max()
+		public INode<T> Max()
 		{
 			if (IsEmpty())
 				throw new InvalidOperationException();
@@ -56,28 +54,19 @@ namespace DataStructures
 			return items[0];
 		}
 
-		public TSource GetKthLargest(int k)
+		public INode<T> GetKthLargest(int k)
 		{
 			if (k < 1 || k > Count)
 				throw new ArgumentOutOfRangeException();
 
-			var heap = new Heap<TSource, TKey>(items.Length, this.selector);
-			foreach (var number in items)
-				heap.Add(number);
+			var heap = new Heap<T>(items.Length);
+			foreach (var item in Items)
+				heap.Add(item);
 
 			for (var i = 0; i < k - 1; i++)
 				heap.Remove();
 
 			return heap.Max();
-		}
-
-		public static bool IsMaxHeap(TSource[] array, Func<TSource, TKey> selector) => IsMaxHeap(array, 0, selector);
-
-		public static void Heapify(TSource[] array, Func<TSource, TKey> selector)
-		{
-			var lastParentIndex = array.Length / 2 - 1;
-			for (var i = lastParentIndex; i >= 0; i--)
-				Heapify(array, i, selector);
 		}
 		#endregion
 
@@ -101,7 +90,7 @@ namespace DataStructures
 			if (!HasRightChild(index))
 				return LeftChildIndex(index);
 
-			return (selector(LeftChild(index)).CompareTo(selector(RightChild(index))) > 0) ?
+			return (LeftChild(index).Value.CompareTo(RightChild(index).Value) > 0) ?
 							LeftChildIndex(index) :
 							RightChildIndex(index);
 		}
@@ -121,17 +110,17 @@ namespace DataStructures
 			if (!HasLeftChild(index))
 				return true;
 
-			var isValid = selector(items[index]).CompareTo(selector(LeftChild(index))) >= 0;
+			var isValid = items[index].Value.CompareTo(LeftChild(index).Value) >= 0;
 
 			if (HasRightChild(index))
-				isValid &= selector(items[index]).CompareTo(selector(RightChild(index))) >= 0;
+				isValid &= items[index].Value.CompareTo(RightChild(index).Value) >= 0;
 
 			return isValid;
 		}
 
-		private TSource RightChild(int index) => items[RightChildIndex(index)];
+		private INode<T> RightChild(int index) => items[RightChildIndex(index)];
 
-		private TSource LeftChild(int index) => items[LeftChildIndex(index)];
+		private INode<T> LeftChild(int index) => items[LeftChildIndex(index)];
 
 		private int LeftChildIndex(int index) => index * 2 + 1;
 
@@ -140,7 +129,7 @@ namespace DataStructures
 		private void BubbleUp()
 		{
 			var index = Count - 1;
-			while (index > 0 && selector(items[index]).CompareTo(selector(items[ParentIndex(index)])) > 0)
+			while (index > 0 && items[index].Value.CompareTo(items[ParentIndex(index)].Value) > 0)
 			{
 				Swap(index, ParentIndex(index));
 				index = ParentIndex(index);
@@ -155,8 +144,12 @@ namespace DataStructures
 			items[first] = items[second];
 			items[second] = temp;
 		}
+		#endregion
 
-		private static bool IsMaxHeap(TSource[] array, int index, Func<TSource, TKey> selector)
+		#region Heapify array
+		public static bool IsMaxHeap(T[] array) => IsMaxHeap(array, 0);
+
+		private static bool IsMaxHeap(T[] array, int index)
 		{
 			// All leaf nodes are valid
 			var lastParentIndex = (array.Length - 2) / 2;
@@ -167,36 +160,43 @@ namespace DataStructures
 			var rightChildIndex = index * 2 + 2;
 
 			var isValidParent =
-					selector(array[index]).CompareTo(selector(array[leftChildIndex])) >= 0 &&
-					selector(array[index]).CompareTo(selector(array[rightChildIndex])) >= 0;
+					array[index].CompareTo(array[leftChildIndex]) >= 0 &&
+					array[index].CompareTo(array[rightChildIndex]) >= 0;
 
 			return isValidParent &&
-							IsMaxHeap(array, leftChildIndex, selector) &&
-							IsMaxHeap(array, rightChildIndex, selector);
+							IsMaxHeap(array, leftChildIndex) &&
+							IsMaxHeap(array, rightChildIndex);
 		}
 
-		private static void Heapify(TSource[] array, int index, Func<TSource, TKey> selector)
+		public static void Heapify(T[] array)
+		{
+			var lastParentIndex = array.Length / 2 - 1;
+			for (var i = lastParentIndex; i >= 0; i--)
+				Heapify(array, i);
+		}
+
+		private static void Heapify(T[] array, int index)
 		{
 			var largerIndex = index;
 
 			var leftIndex = index * 2 + 1;
 			if (leftIndex < array.Length &&
-					selector(array[leftIndex]).CompareTo(selector(array[largerIndex])) > 0)
+					array[leftIndex].CompareTo(array[largerIndex]) > 0)
 				largerIndex = leftIndex;
 
 			var rightIndex = index * 2 + 2;
 			if (rightIndex < array.Length &&
-				selector(array[rightIndex]).CompareTo(selector(array[largerIndex])) > 0)
+				array[rightIndex].CompareTo(array[largerIndex]) > 0)
 				largerIndex = rightIndex;
 
 			if (index == largerIndex)
 				return;
 
 			Swap(array, index, largerIndex);
-			Heapify(array, largerIndex, selector);
+			Heapify(array, largerIndex);
 		}
 
-		private static void Swap(TSource[] array, int first, int second)
+		private static void Swap(T[] array, int first, int second)
 		{
 			var temp = array[first];
 			array[first] = array[second];
