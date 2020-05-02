@@ -6,7 +6,7 @@ namespace DataStructures
 {
 	/// <summary>
 	/// Min Heap implementation, where item on top will always have the lowest Id.
-	/// Object that will be added to the tree must implement INode
+	/// Objects that will be added to the heap must implement INode
 	/// </summary>
 	/// <typeparam name="T">Type of Id property in an object that will be added to the heap</typeparam>
 	public class MinHeap<T> where T : IComparable

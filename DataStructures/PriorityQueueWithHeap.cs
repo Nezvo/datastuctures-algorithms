@@ -6,7 +6,7 @@ namespace DataStructures
 {
 	/// <summary>
 	/// Priority queue implementation using heap.
-	/// Objects that will be added to the queue must implement INode
+	/// Objects that will be added to the priority queue must implement INode
 	/// </summary>
 	/// <typeparam name="T">Type of Id property in an object that will be added to the priority queue</typeparam>
 	public class PriorityQueueWithHeap<T> where T : IComparable

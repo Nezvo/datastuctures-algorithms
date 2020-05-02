@@ -7,7 +7,7 @@ namespace DataStructures
 {
 	/// <summary>
 	/// Graph implementation.
-	/// Object that will be added to the tree must implement INode
+	/// Objects that will be added to the graph must implement INode
 	/// </summary>
 	/// <typeparam name="T">Type of Id property in an object that will be added to the graph</typeparam>
 	public class Graph<T> where T : IComparable
@@ -109,7 +109,7 @@ namespace DataStructures
 
 		public List<string> TopologicalSort()
 		{
-			var stack = new Stack(nodes.Count);
+			var stack = new Stack<INode<T>>(nodes.Count);
 			var visited = new HashSet<INode<T>>();
 
 			foreach (var node in nodes.Values)
@@ -117,7 +117,7 @@ namespace DataStructures
 
 			var sorted = new List<string>();
 			while (stack.Count != 0)
-				sorted.Add(((INode<T>)stack.Pop()).Name);
+				sorted.Add(stack.Pop().Name);
 
 			return sorted;
 		}
@@ -154,7 +154,7 @@ namespace DataStructures
 					TraverseDepthFirst(node, visited);
 		}
 
-		private void TopologicalSort(INode<T> node, HashSet<INode<T>> visited, Stack stack)
+		private void TopologicalSort(INode<T> node, HashSet<INode<T>> visited, Stack<INode<T>> stack)
 		{
 			if (visited.Contains(node))
 				return;

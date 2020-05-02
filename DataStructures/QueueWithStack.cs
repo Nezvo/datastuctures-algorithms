@@ -9,13 +9,13 @@ namespace DataStructures
 	public class QueueWithStack<T>
 	{
 		#region Internals and properties
-		private readonly Stack stack1;
-		private readonly Stack stack2;
+		private readonly Stack<T> stack1;
+		private readonly Stack<T> stack2;
 
 		public QueueWithStack(int size)
 		{
-			stack1 = new Stack(size);
-			stack2 = new Stack(size);
+			stack1 = new Stack<T>(size);
+			stack2 = new Stack<T>(size);
 		} 
 		#endregion
 
@@ -29,7 +29,7 @@ namespace DataStructures
 
 			MoveStack1ToStack2();
 
-			return (T)stack2.Pop();
+			return stack2.Pop();
 		}
 
 		public T Peek()
@@ -39,7 +39,7 @@ namespace DataStructures
 
 			MoveStack1ToStack2();
 
-			return (T)stack2.Peek();
+			return stack2.Peek();
 		}
 
 		public bool IsEmpty() => stack1.IsEmpty() && stack2.IsEmpty();

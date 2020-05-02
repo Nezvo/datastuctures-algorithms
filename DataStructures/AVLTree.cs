@@ -5,7 +5,7 @@ namespace DataStructures
 {
 	/// <summary>
 	/// AVL Tree implementation.
-	/// Object that will be added to the tree must implement IBinaryNode
+	/// Objects that will be added to the tree must implement IBinaryNode
 	/// </summary>
 	/// <typeparam name="T">Type of Id property in an object that will be added to the tree</typeparam>
 	public class AVLTree<T> where T : IComparable

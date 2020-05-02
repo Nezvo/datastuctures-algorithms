@@ -8,7 +8,7 @@ namespace DataStructures
 {
 	/// <summary>
 	/// Weighted graph implementation.
-	/// Object that will be added to the tree must implement INode
+	/// Objects that will be added to the weighted graph must implement INode
 	/// </summary>
 	/// <typeparam name="T">Type of Id property in an object that will be added to the weighted graph</typeparam>
 	public class WeightedGraph<T> where T : IComparable
@@ -152,7 +152,7 @@ namespace DataStructures
 		#region Private methods
 		private List<string> BuildPath(Dictionary<Node, Node> previousNodes, Node toNode)
 		{
-			var stack = new Stack(nodes.Count);
+			var stack = new Stack<Node>(nodes.Count);
 			stack.Push(toNode);
 			var previous = previousNodes[toNode];
 			while (previous != null)
@@ -163,7 +163,7 @@ namespace DataStructures
 
 			var path = new List<string>();
 			while (stack.Count != 0)
-				path.Add(((Node)stack.Pop()).Name);
+				path.Add(stack.Pop().Name);
 
 			return path;
 		}
