@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DsAlgo
 {
-	class Program
+	class Demo
 	{
 		static void Main()
 		{
