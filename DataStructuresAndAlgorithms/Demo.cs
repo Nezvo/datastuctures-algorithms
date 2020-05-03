@@ -3,7 +3,7 @@ using DataStructures;
 using System;
 using System.Collections.Generic;
 
-namespace DsAlgo
+namespace DataStructuresAndAlgorithms
 {
 	class Demo
 	{

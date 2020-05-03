@@ -7,7 +7,7 @@
 /Algorithms/obj
 /DataStructures/bin/Debug/netstandard2.0
 /DataStructures/obj
-/DsAlgo/bin/Debug/netcoreapp3.1
-/DsAlgo/obj/Debug/netcoreapp3.1
-/DsAlgo/obj
-/DsAlgo/.vs/DataStructuresAndAlgorithms
+/DataStructuresAndAlgorithms/bin/Debug/netcoreapp3.1
+/DataStructuresAndAlgorithms/obj/Debug/netcoreapp3.1
+/DataStructuresAndAlgorithms/obj
+/DataStructuresAndAlgorithms/.vs/DataStructuresAndAlgorithms
