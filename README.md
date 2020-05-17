@@ -68,3 +68,5 @@ Sorting:
 * Implement insertion sort
 * Implement merge sort
 * Implement quick sort
+* Implement counting sort
+* Implement bucket sort
