@@ -1,5 +1,5 @@
 # Data Structures &amp; Algorithms
-Constains data structure implementations for:
+Constains C# data structure implementations for:
 * AVL Tree
 * Array
 * Binary Tree
