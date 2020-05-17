@@ -1,5 +1,28 @@
-# Data Structures &amp; Algorithms exercises
+# Data Structures &amp; Algorithms
+Constains data structure implementations for:
+* AVL Tree
+* Array
+* Binary Tree
+* Graph
+* Hash
+  * Chaining
+  * Linear probing
+* Heap
+* Min Heap
+* Linked List
+* Stack
+* Min Stack
+* Priority Queue
+  * Array implementation
+  * Heap implementation
+* Queue
+  * Array implementation
+  * Linked List implementation
+  * Stack implementation
+* Trie
+* Weighted Graph
 
+# Exercises
 General:
 
 * Find the most frequent integer in an array
