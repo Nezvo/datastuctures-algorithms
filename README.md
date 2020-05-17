@@ -1,4 +1,4 @@
-# Data Structures &amp; Algorithms exercizes
+# Data Structures &amp; Algorithms exercises
 
 General:
 
